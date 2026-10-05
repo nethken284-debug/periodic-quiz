@@ -1,0 +1,63 @@
+<div class="bg-atoms" id="bgAtoms" aria-hidden="true"></div>
+
+<header class="wrap top">
+  <div class="logo" aria-hidden="true"><div class="nuc"></div><div class="orb"></div><div class="orb"></div><div class="orb"></div><div class="e"></div></div>
+  <div class="brand">
+    <h1>元素週期表背誦站</h1>
+    <p>35 個常見元素 · 符號＋英文全稱</p>
+  </div>
+  <div class="stats">
+    <span class="chip lvl" title="答對題目可以賺取經驗值（XP）升級">Lv.<b id="lvNum">1</b> <span id="lvName">氫原子新手</span><span class="bar"><i id="xpBar"></i></span><b id="xpTxt">0</b></span>
+    <span class="chip" title="連續多少日有做測驗">🔥 <b id="dayStreak">0</b> 日</span>
+    <span class="chip" title="連續答對 3 次 = 掌握">⭐ <b><span id="masterTxt">0</span>/35</b></span>
+    <button class="iconbtn" id="achBtn" title="成就">🏅 <b id="achTxt">0</b></button>
+    <button class="iconbtn" id="sndBtn" title="開／關音效">🔊</button>
+  </div>
+</header>
+
+<nav class="tabs">
+  <div class="wrap">
+    <div class="tabbar" id="tabbar" role="tablist">
+      <span class="slider" aria-hidden="true"></span>
+      <button role="tab" id="tabR" class="on" aria-selected="true" aria-controls="review">📖 溫習區</button>
+      <button role="tab" id="tabQ" aria-selected="false" aria-controls="quiz">✏️ 測驗區</button>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <section id="review" class="panel" role="tabpanel" aria-labelledby="tabR">
+    <div class="toolbar">
+      <label class="search"><span aria-hidden="true">🔍</span><input id="q" type="search" placeholder="搜尋：符號、英文名、中文名或原子序" autocomplete="off" autocapitalize="off" spellcheck="false"></label>
+      <div class="seg" id="fCls" aria-label="分類">
+        <button class="on" data-c="all">全部</button><button data-c="me">金屬</button><button data-c="nm">非金屬</button><button data-c="se">半金屬</button>
+      </div>
+      <div class="seg" id="fSt" aria-label="狀態">
+        <button class="on" data-s="all">全部狀態</button><button data-s="s">固體 s</button><button data-s="l">液體 ℓ</button><button data-s="g">氣體 g</button>
+      </div>
+    </div>
+    <div class="toolbar">
+      <div class="seg" id="layout" aria-label="排列方式">
+        <button class="on" data-l="grid">🔢 原子序排列</button><button data-l="pt">🧩 週期表位置</button>
+      </div>
+      <button class="btn ghost sm" id="coverBtn">🙈 遮住答案自測</button>
+      <button class="btn sm" id="spinBtn">🎰 隨機抽一個</button>
+    </div>
+    <div class="legend">
+      <span><i style="background:var(--me)"></i>金屬 me</span>
+      <span><i style="background:var(--nm)"></i>非金屬 nm</span>
+      <span><i style="background:var(--se)"></i>半金屬 se</span>
+      <span>右上角：s 固體 · ℓ 液體 · g 氣體</span>
+      <span>★ 掌握程度 · <b style="color:var(--bad)">●</b> 答錯次數</span>
+    </div>
+    <p class="hint" id="rvHint" style="margin:-4px 0 12px">👆 點任何一格，看詳細介紹卡片。</p>
+    <div id="gridHost"></div>
+  </section>
+
+  <section id="quiz" class="panel hidden" role="tabpanel" aria-labelledby="tabQ"></section>
+</main>
+
+<footer>錯題紀錄只會保存在這部裝置的瀏覽器裏。</footer>
+
+<div id="modalHost"></div>
+<canvas id="fx" aria-hidden="true"></canvas>

@@ -1,0 +1,1355 @@
+<!doctype html>
+<html lang="zh-Hant-HK">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="背誦 35 個常見元素的符號和英文全稱：溫習卡片＋順序默寫＋隨機抽考。">
+<meta name="theme-color" content="#6d4aff">
+<title>元素週期表背誦站</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%236d4aff'/%3E%3Ctext x='32' y='44' font-size='32' font-family='Arial' font-weight='700' fill='white' text-anchor='middle'%3ENa%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#f4f1ff; --bg2:#e9f7ff; --surface:#ffffff; --surface2:#f7f5ff; --ink:#1e1b33; --muted:#6a6585; --line:#e3ddf5;
+  --accent:#6d4aff; --accent-ink:#ffffff; --accent-soft:#ece7ff;
+  --good:#12a150; --good-soft:#dcf7e6; --bad:#e5294f; --bad-soft:#ffe1e7; --warn:#d97706; --warn-soft:#fff1d6;
+  --me:#f59e0b; --me-bg:#fff3d9; --me-ink:#8a4b00;
+  --nm:#10b981; --nm-bg:#dbf8ee; --nm-ink:#04664a;
+  --se:#8b5cf6; --se-bg:#efe6ff; --se-ink:#5b2bc4;
+  --shadow:0 6px 20px rgba(60,40,140,.10); --shadow-lg:0 18px 50px rgba(40,20,110,.22);
+  --r:16px; --font:-apple-system,BlinkMacSystemFont,"PingFang TC","Noto Sans TC","Microsoft JhengHei","Heiti TC",system-ui,sans-serif;
+  --round:ui-rounded,"SF Pro Rounded","Arial Rounded MT Bold","Nunito","Varela Round",var(--font);
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
+  --bg:#13111f; --bg2:#0f1a26; --surface:#1d1a2e; --surface2:#24203a; --ink:#f2effc; --muted:#a9a3c6; --line:#332e4d;
+  --accent:#8f74ff; --accent-ink:#ffffff; --accent-soft:#2c2550;
+  --good:#3ddc84; --good-soft:#123a26; --bad:#ff5c7c; --bad-soft:#47182a; --warn:#fbbf24; --warn-soft:#3b2c0b;
+  --me:#fbbf24; --me-bg:#3a2a0c; --me-ink:#ffd27a;
+  --nm:#34d399; --nm-bg:#0d3527; --nm-ink:#8af0c7;
+  --se:#a78bfa; --se-bg:#2c2152; --se-ink:#cdbcff;
+  --shadow:0 6px 20px rgba(0,0,0,.35); --shadow-lg:0 18px 50px rgba(0,0,0,.55);
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#13111f; --bg2:#0f1a26; --surface:#1d1a2e; --surface2:#24203a; --ink:#f2effc; --muted:#a9a3c6; --line:#332e4d;
+  --accent:#8f74ff; --accent-ink:#ffffff; --accent-soft:#2c2550;
+  --good:#3ddc84; --good-soft:#123a26; --bad:#ff5c7c; --bad-soft:#47182a; --warn:#fbbf24; --warn-soft:#3b2c0b;
+  --me:#fbbf24; --me-bg:#3a2a0c; --me-ink:#ffd27a;
+  --nm:#34d399; --nm-bg:#0d3527; --nm-ink:#8af0c7;
+  --se:#a78bfa; --se-bg:#2c2152; --se-ink:#cdbcff;
+  --shadow:0 6px 20px rgba(0,0,0,.35); --shadow-lg:0 18px 50px rgba(0,0,0,.55);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:var(--font);color:var(--ink);background:var(--bg);
+  background-image:radial-gradient(900px 500px at 0% -10%,var(--accent-soft),transparent 60%),radial-gradient(800px 500px at 110% 10%,var(--bg2),transparent 60%);
+  background-attachment:fixed;min-height:100vh;line-height:1.55;overflow-x:hidden}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer;-webkit-tap-highlight-color:transparent}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.hidden{display:none!important}
+
+/* ---------- 背景漂浮原子 ---------- */
+.bg-atoms{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.bg-atoms span{position:absolute;bottom:-60px;font-family:var(--round);font-weight:800;color:var(--accent);opacity:.07;animation:floatUp linear infinite}
+@keyframes floatUp{to{transform:translateY(-115vh) rotate(40deg)}}
+main,header,nav{position:relative;z-index:1}
+
+/* ---------- 頂部 ---------- */
+.top{display:flex;align-items:center;gap:14px;padding:18px 0 10px;flex-wrap:wrap}
+.logo{width:52px;height:52px;flex:none;position:relative}
+.logo .nuc{position:absolute;inset:19px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px var(--accent-soft)}
+.logo .orb{position:absolute;inset:3px;border:2px solid var(--accent);border-radius:50%;opacity:.55}
+.logo .orb:nth-child(2){transform:rotate(60deg) scaleY(.38)}
+.logo .orb:nth-child(3){transform:rotate(-60deg) scaleY(.38)}
+.logo .orb:nth-child(4){transform:scaleY(.38)}
+.logo .e{position:absolute;inset:0;animation:spin 2.4s linear infinite}
+.logo .e::after{content:"";position:absolute;left:50%;top:1px;width:8px;height:8px;margin-left:-4px;border-radius:50%;background:var(--me);box-shadow:0 0 8px var(--me)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.brand h1{margin:0;font-size:clamp(20px,4.6vw,28px);line-height:1.15;letter-spacing:.5px}
+.brand p{margin:2px 0 0;color:var(--muted);font-size:13px}
+.stats{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.chip{display:inline-flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:13px;box-shadow:var(--shadow);white-space:nowrap}
+.chip b{font-family:var(--round)}
+.lvl{min-width:170px}
+.lvl .bar{flex:1;height:7px;border-radius:9px;background:var(--accent-soft);overflow:hidden;min-width:60px}
+.lvl .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--me));border-radius:9px;transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.iconbtn{border:1px solid var(--line);background:var(--surface);border-radius:999px;height:34px;min-width:34px;padding:0 10px;box-shadow:var(--shadow);font-size:15px;display:inline-flex;align-items:center;gap:4px;transition:transform .15s}
+.iconbtn:hover{transform:translateY(-1px)}
+.iconbtn:active{transform:scale(.95)}
+
+/* ---------- 分頁 ---------- */
+.tabs{position:sticky;top:0;z-index:20;padding:10px 0;background:linear-gradient(var(--bg) 70%,transparent)}
+.tabbar{display:flex;gap:6px;background:var(--surface);border:1px solid var(--line);padding:6px;border-radius:18px;box-shadow:var(--shadow);max-width:520px;margin:0 auto;position:relative}
+.tabbar button{flex:1;border:0;background:transparent;padding:11px 8px;border-radius:13px;font-size:17px;font-weight:700;position:relative;z-index:1;color:var(--muted);transition:color .25s}
+.tabbar button.on{color:var(--accent-ink)}
+.tabbar .slider{position:absolute;top:6px;bottom:6px;left:6px;width:calc(50% - 9px);border-radius:13px;background:linear-gradient(135deg,var(--accent),#b05bff);transition:transform .35s cubic-bezier(.3,1.3,.5,1);box-shadow:0 6px 16px rgba(109,74,255,.35)}
+.tabbar.q .slider{transform:translateX(calc(100% + 6px))}
+.panel{animation:fadeIn .35s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* ---------- 溫習區工具列 ---------- */
+.toolbar{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center;margin:6px 0 14px}
+.search{flex:1 1 220px;display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:0 12px;box-shadow:var(--shadow)}
+.search input{border:0;outline:0;background:transparent;padding:10px 0;width:100%;font-size:16px}
+.seg{display:inline-flex;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:3px;box-shadow:var(--shadow);flex-wrap:wrap}
+.seg button{border:0;background:transparent;padding:7px 11px;border-radius:9px;font-size:14px;color:var(--muted);font-weight:600}
+.seg button.on{background:var(--accent);color:var(--accent-ink)}
+.seg button[data-c="me"].on{background:var(--me);color:#3a2000}
+.seg button[data-c="nm"].on{background:var(--nm);color:#022a1e}
+.seg button[data-c="se"].on{background:var(--se);color:#fff}
+.btn{border:0;border-radius:12px;padding:10px 16px;font-weight:700;font-size:15px;background:var(--accent);color:var(--accent-ink);box-shadow:0 6px 16px rgba(109,74,255,.28);transition:transform .15s,filter .15s;display:inline-flex;align-items:center;justify-content:center;gap:6px}
+.btn:hover{filter:brightness(1.07);transform:translateY(-1px)}
+.btn:active{transform:scale(.97)}
+.btn.ghost{background:var(--surface);color:var(--ink);border:1px solid var(--line);box-shadow:var(--shadow)}
+.btn.danger{background:var(--bad);color:#fff;box-shadow:0 6px 16px rgba(229,41,79,.25)}
+.btn.sm{padding:7px 12px;font-size:14px;border-radius:10px}
+.btn:disabled{opacity:.45;pointer-events:none}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin:-4px 0 12px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:4px;margin-right:5px;vertical-align:-1px}
+.hint{font-size:13px;color:var(--muted)}
+
+/* ---------- 元素格子 ---------- */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:10px;padding-bottom:40px}
+.tile{position:relative;aspect-ratio:1/1.02;border-radius:14px;border:2px solid transparent;background:var(--surface);box-shadow:var(--shadow);padding:0;text-align:center;perspective:700px;transition:transform .18s cubic-bezier(.3,1.4,.6,1),box-shadow .18s;animation:pop .45s cubic-bezier(.3,1.5,.6,1) both}
+@keyframes pop{from{opacity:0;transform:scale(.6)}}
+.tile:hover{transform:translateY(-4px) scale(1.04);box-shadow:var(--shadow-lg);z-index:2}
+.tile:active{transform:scale(.96)}
+.tile:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.tile .in{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.3,1.3,.5,1)}
+.tile .f,.tile .b{position:absolute;inset:0;border-radius:12px;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 4px}
+.tile .b{transform:rotateY(180deg)}
+.tile.c-me .f,.tile.c-me .b{background:var(--me-bg)} .tile.c-me{border-color:var(--me)}
+.tile.c-nm .f,.tile.c-nm .b{background:var(--nm-bg)} .tile.c-nm{border-color:var(--nm)}
+.tile.c-se .f,.tile.c-se .b{background:var(--se-bg)} .tile.c-se{border-color:var(--se)}
+.tile .num{position:absolute;top:5px;left:8px;font-size:13px;font-weight:700;color:var(--muted);font-family:var(--round)}
+.tile .stt{position:absolute;top:5px;right:8px;font-size:12px;font-weight:700;color:var(--muted);font-style:italic}
+.tile .sym{font-family:var(--round);font-weight:800;font-size:clamp(26px,4.2vw,36px);line-height:1}
+.tile.c-me .sym{color:var(--me-ink)} .tile.c-nm .sym{color:var(--nm-ink)} .tile.c-se .sym{color:var(--se-ink)}
+.tile .nm{font-size:12px;margin-top:5px;font-weight:600;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tile .zh{font-size:11px;color:var(--muted)}
+.tile .stars{position:absolute;bottom:3px;left:0;right:0;font-size:10px;letter-spacing:1px;color:var(--me);line-height:1}
+.tile .wrong{position:absolute;bottom:-7px;right:-7px;background:var(--bad);color:#fff;font-size:11px;font-weight:800;border-radius:999px;min-width:21px;height:21px;padding:0 5px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(229,41,79,.4);z-index:3}
+.tile .q{font-family:var(--round);font-size:32px;font-weight:800;color:var(--muted);opacity:.6}
+.grid.cover .tile .in{transform:rotateY(180deg)}
+.grid.cover .tile.open .in{transform:rotateY(0)}
+.tile.spot{animation:none;transform:scale(1.12);box-shadow:0 0 0 4px var(--accent),var(--shadow-lg);z-index:3}
+/* 週期表排列 */
+.ptwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:8px 2px 12px;margin:0 -2px}
+.grid.pt{grid-template-columns:repeat(18,minmax(56px,1fr));gap:5px;min-width:1080px;padding-bottom:10px}
+.grid.pt .tile{aspect-ratio:1/1.12;border-radius:10px;border-width:2px}
+.grid.pt .tile .sym{font-size:22px}
+.grid.pt .tile .nm{font-size:9.5px;margin-top:3px}
+.grid.pt .tile .num{font-size:10px;top:3px;left:5px}
+.grid.pt .tile .stt{font-size:9.5px;top:3px;right:5px}
+.grid.pt .tile .wrong{min-width:17px;height:17px;font-size:10px;bottom:-5px;right:-5px}
+.vac{border-radius:10px;background:var(--line);opacity:.35;aspect-ratio:1/1.12}
+.gnum{font-size:11px;color:var(--muted);text-align:center;align-self:end;font-weight:700}
+.pnum{font-size:11px;color:var(--muted);display:flex;align-items:center;justify-content:center;font-weight:700}
+.empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:40px 0}
+
+/* ---------- 彈出卡片 ---------- */
+.modal{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(20,12,50,.45);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);animation:fade .2s ease}
+@keyframes fade{from{opacity:0}}
+.card{position:relative;width:min(640px,100%);max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px);overflow:auto;background:var(--surface);border-radius:22px;box-shadow:var(--shadow-lg);animation:cardIn .38s cubic-bezier(.25,1.35,.5,1)}
+@keyframes cardIn{from{opacity:0;transform:translateY(30px) scale(.92)}}
+.card.slide-l{animation:slideL .3s ease}
+.card.slide-r{animation:slideR .3s ease}
+@keyframes slideL{from{opacity:0;transform:translateX(-40px)}}
+@keyframes slideR{from{opacity:0;transform:translateX(40px)}}
+.chead{position:relative;padding:22px 22px 18px;display:flex;gap:18px;align-items:center;border-radius:22px 22px 0 0}
+.chead.c-me{background:linear-gradient(135deg,var(--me-bg),var(--surface))}
+.chead.c-nm{background:linear-gradient(135deg,var(--nm-bg),var(--surface))}
+.chead.c-se{background:linear-gradient(135deg,var(--se-bg),var(--surface))}
+.bigtile{flex:none;width:112px;height:120px;border-radius:18px;border:3px solid;background:var(--surface);position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:var(--shadow)}
+.bigtile .n{position:absolute;top:6px;left:10px;font-weight:800;font-family:var(--round);color:var(--muted)}
+.bigtile .s{font-family:var(--round);font-size:50px;font-weight:800;line-height:1}
+.bigtile .emo{position:absolute;bottom:-12px;right:-12px;font-size:30px;filter:drop-shadow(0 3px 4px rgba(0,0,0,.2));animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-5px) rotate(-6deg)}}
+.c-me .bigtile{border-color:var(--me)} .c-me .bigtile .s{color:var(--me-ink)}
+.c-nm .bigtile{border-color:var(--nm)} .c-nm .bigtile .s{color:var(--nm-ink)}
+.c-se .bigtile{border-color:var(--se)} .c-se .bigtile .s{color:var(--se-ink)}
+.ctitle h2{margin:0;font-size:28px;line-height:1.15;font-family:var(--round)}
+.ctitle .zhn{font-size:20px;font-weight:700;margin-top:2px}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.tag{font-size:12.5px;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--surface2);border:1px solid var(--line)}
+.tag.me{background:var(--me-bg);color:var(--me-ink);border-color:var(--me)}
+.tag.nm{background:var(--nm-bg);color:var(--nm-ink);border-color:var(--nm)}
+.tag.se{background:var(--se-bg);color:var(--se-ink);border-color:var(--se)}
+.x{position:absolute;top:12px;right:12px;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--surface);font-size:18px;display:flex;align-items:center;justify-content:center;z-index:2}
+.x:hover{background:var(--bad-soft);color:var(--bad)}
+.cbody{padding:6px 22px 18px}
+.say{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 12px}
+.sec{margin:12px 0;padding:13px 15px;border-radius:14px;background:var(--surface2);border:1px solid var(--line)}
+.sec h3{margin:0 0 6px;font-size:14px;color:var(--muted);letter-spacing:.5px}
+.sec p{margin:0;font-size:15.5px}
+.sec.en p{font-size:15px}
+.sec.lat{background:var(--warn-soft);border-color:var(--warn)}
+.sec.lat h3{color:var(--warn)}
+.sec.lat .w{font-family:var(--round);font-size:20px;font-weight:800;letter-spacing:1px}
+.sec.lat .w u{text-decoration:none;color:var(--bad);border-bottom:3px solid var(--bad)}
+.sec.spell{background:var(--bad-soft);border-color:var(--bad)}
+.sec.spell h3{color:var(--bad)}
+.spellword{font-family:var(--round);font-size:26px;font-weight:800;letter-spacing:2px;margin:2px 0 4px}
+.spellword mark{background:none;color:var(--bad);border-bottom:3px solid var(--bad);padding:0 1px}
+.sec.mix{background:var(--accent-soft);border-color:var(--accent)}
+.sec.mix h3{color:var(--accent)}
+.try{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.try input{flex:1 1 180px;min-width:0;padding:10px 12px;border-radius:10px;border:2px solid var(--line);background:var(--surface);font-size:17px;font-family:var(--round);letter-spacing:1px;outline:0}
+.try input:focus{border-color:var(--accent)}
+.live{font-family:var(--round);font-size:20px;letter-spacing:2px;min-height:28px;margin-top:6px;font-weight:800}
+.live .ok{color:var(--good)} .live .no{color:var(--bad);text-decoration:underline wavy} .live .rest{color:var(--muted);opacity:.45}
+.card.hidename .hn{filter:blur(9px);user-select:none;-webkit-user-select:none;pointer-events:none}
+.myrec{font-size:13px;color:var(--muted);text-align:center;margin-top:6px}
+.cnav{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 22px 20px;border-top:1px solid var(--line)}
+.cnav .pos{font-size:13px;color:var(--muted)}
+.arrow{position:fixed;top:50%;z-index:51;width:52px;height:52px;margin-top:-26px;border-radius:50%;border:0;background:var(--surface);box-shadow:var(--shadow-lg);font-size:22px;display:flex;align-items:center;justify-content:center;transition:transform .15s}
+.arrow:hover{transform:scale(1.1)}
+.arrow.l{left:max(10px,calc(50% - 400px))} .arrow.r{right:max(10px,calc(50% - 400px))}
+
+/* ---------- 測驗區 ---------- */
+.qhome{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin:6px 0 18px}
+.mode{position:relative;overflow:hidden;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:var(--shadow)}
+.mode .big{font-size:42px;line-height:1}
+.mode h3{margin:8px 0 4px;font-size:21px}
+.mode p{margin:0 0 12px;color:var(--muted);font-size:14.5px}
+.mode .rec{font-size:13px;color:var(--muted);margin-top:10px}
+.mode::after{content:"";position:absolute;right:-40px;top:-40px;width:140px;height:140px;border-radius:50%;background:var(--accent-soft);z-index:0}
+.mode>*{position:relative;z-index:1}
+.opts{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+.opts .lab{font-size:13px;font-weight:700;color:var(--muted)}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:18px 20px;box-shadow:var(--shadow);margin-bottom:16px}
+.box h3{margin:0 0 10px;font-size:18px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.box h3 .sp{flex:1}
+.wchips{display:flex;flex-wrap:wrap;gap:8px}
+.wchip{border:1px solid var(--line);background:var(--surface2);border-radius:12px;padding:6px 10px;font-size:14px;display:inline-flex;align-items:center;gap:6px}
+.wchip b{font-family:var(--round);font-size:16px}
+.wchip .c{background:var(--bad);color:#fff;border-radius:999px;padding:0 7px;font-size:12px;font-weight:800}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.badge{border:1px solid var(--line);border-radius:14px;padding:10px;text-align:center;background:var(--surface2)}
+.badge .i{font-size:30px}
+.badge .t{font-weight:800;font-size:14px}
+.badge .d{font-size:12px;color:var(--muted)}
+.badge.lock{opacity:.45;filter:grayscale(1)}
+
+/* 作答畫面 */
+.qtop{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.qtop .sp{flex:1}
+.pill{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-weight:700;font-size:14px;box-shadow:var(--shadow);font-family:var(--round)}
+.track{display:flex;gap:4px;margin:0 0 14px}
+.track i{flex:1;height:9px;border-radius:9px;background:var(--line);transition:background .3s}
+.track i.ok{background:var(--good)} .track i.no{background:var(--bad)} .track i.half{background:var(--warn)} .track i.cur{background:var(--accent);animation:pulse 1s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.4}}
+.qcard{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:22px;box-shadow:var(--shadow);max-width:620px;margin:0 auto;position:relative}
+.qcard.shake{animation:shake .45s}
+@keyframes shake{20%{transform:translateX(-10px)}40%{transform:translateX(9px)}60%{transform:translateX(-6px)}80%{transform:translateX(4px)}}
+.mystery{display:flex;align-items:center;gap:16px;justify-content:center;margin-bottom:16px}
+.mtile{width:104px;height:110px;border-radius:18px;border:3px dashed var(--accent);display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--accent-soft);position:relative;animation:wiggle 3s ease-in-out infinite}
+@keyframes wiggle{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg)}}
+.mtile .n{font-family:var(--round);font-size:44px;font-weight:800;color:var(--accent);line-height:1}
+.mtile .l{font-size:12px;color:var(--muted);font-weight:700}
+.mtile .face{position:absolute;top:-14px;right:-14px;font-size:30px;transition:transform .3s}
+.mtile.new{animation:popIn .45s cubic-bezier(.3,1.6,.5,1)}
+@keyframes popIn{from{transform:scale(.4) rotate(-20deg);opacity:0}}
+.qprompt{font-size:15px;color:var(--muted)}
+.qprompt b{color:var(--ink);font-size:20px}
+.zhhint{font-size:15px;color:var(--accent);font-weight:700;min-height:22px}
+.fields{display:grid;grid-template-columns:minmax(0,130px) minmax(0,1fr);gap:10px}
+.field label{display:block;font-size:13px;font-weight:700;color:var(--muted);margin:0 0 4px 2px}
+.field input{width:100%;padding:13px 14px;border-radius:14px;border:2px solid var(--line);background:var(--surface2);font-size:21px;font-family:var(--round);font-weight:700;outline:0;transition:border-color .2s,box-shadow .2s}
+.field input:focus{border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-soft)}
+.field input.ok{border-color:var(--good);background:var(--good-soft)}
+.field input.no{border-color:var(--bad);background:var(--bad-soft)}
+.qact{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;align-items:center}
+.qact .sp{flex:1}
+.kbd{font-size:12px;color:var(--muted)}
+.kbd kbd{border:1px solid var(--line);border-bottom-width:3px;border-radius:6px;padding:0 6px;font-family:inherit;background:var(--surface2)}
+.fb{margin-top:16px;border-radius:16px;padding:14px 16px;background:var(--bad-soft);border:2px solid var(--bad);animation:fadeIn .25s}
+.fb h4{margin:0 0 8px;color:var(--bad);font-size:17px}
+.fb .row{display:grid;grid-template-columns:52px 1fr;gap:4px 10px;align-items:baseline;margin:6px 0}
+.fb .k{font-size:13px;color:var(--muted);font-weight:700}
+.ans{font-family:var(--round);font-size:22px;font-weight:800;letter-spacing:1.5px;overflow-wrap:anywhere}
+.ans.right{display:inline-block;white-space:nowrap}
+.ans .w{color:var(--bad);background:rgba(229,41,79,.14);border-radius:4px;padding:0 1px;text-decoration:underline wavy var(--bad)}
+.ans .xt{color:var(--bad);text-decoration:line-through;opacity:.8}
+.ans .m{color:var(--bad);opacity:.9}
+.ans.right{color:var(--good)}
+.ans.right .h{text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:4px}
+.ans .empty-ans{font-size:15px;color:var(--muted);font-weight:600;letter-spacing:0}
+.okmark{color:var(--good);font-weight:800;font-size:15px}
+.tip{margin-top:8px;font-size:14px;padding:8px 10px;border-radius:10px;background:var(--surface);border:1px dashed var(--line)}
+.tip b{color:var(--bad)}
+.combo{position:absolute;top:-16px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#ff7a18,#ff2d6f);color:#fff;font-weight:800;border-radius:999px;padding:4px 14px;font-size:15px;box-shadow:0 6px 18px rgba(255,60,90,.4);white-space:nowrap}
+.combo.bump{animation:bump .4s cubic-bezier(.3,1.8,.5,1)}
+@keyframes bump{from{transform:translateX(-50%) scale(1.5)}}
+
+/* 結果 */
+.result{max-width:720px;margin:0 auto;text-align:center}
+.result .medal{font-size:72px;line-height:1;animation:popIn .6s cubic-bezier(.3,1.6,.5,1)}
+.result h2{margin:8px 0 2px;font-size:26px}
+.score{font-family:var(--round);font-size:64px;font-weight:800;line-height:1.1;background:linear-gradient(135deg,var(--accent),#ff5ca8);-webkit-background-clip:text;background-clip:text;color:transparent}
+.rstats{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:12px 0}
+.newrec{display:inline-block;background:linear-gradient(135deg,#ffcf3d,#ff8a00);color:#3a2000;font-weight:800;border-radius:999px;padding:4px 14px;animation:bump .5s,pulse 1.6s 0.5s ease-in-out 3}
+.wlist{text-align:left;margin:16px 0}
+.witem{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px 14px;margin-bottom:8px;cursor:pointer;transition:transform .15s}
+.witem:hover{transform:translateX(4px)}
+.witem .el{font-family:var(--round);font-weight:800;font-size:22px;width:62px;text-align:center;border-radius:10px;padding:4px 0;background:var(--surface2)}
+.witem .el small{display:block;font-size:11px;color:var(--muted);font-weight:700}
+.witem .ans{font-size:17px}
+.witem .lines{display:flex;flex-direction:column;gap:2px}
+.witem .ln{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.witem .ln .k{font-size:12px;color:var(--muted);font-weight:700;width:34px;flex:none}
+.racts{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:16px 0 40px}
+
+/* ---------- 小元件 ---------- */
+.toast{position:fixed;left:50%;top:18px;transform:translateX(-50%);z-index:80;background:var(--surface);border:2px solid var(--me);border-radius:16px;padding:10px 16px;box-shadow:var(--shadow-lg);display:flex;gap:10px;align-items:center;animation:toastIn .5s cubic-bezier(.3,1.5,.5,1);max-width:calc(100% - 32px)}
+.toast .i{font-size:30px}
+.toast b{display:block}
+.toast small{color:var(--muted)}
+@keyframes toastIn{from{transform:translate(-50%,-80px)}}
+.floaty{position:fixed;z-index:70;pointer-events:none;font-weight:800;font-family:var(--round);font-size:22px;color:var(--good);text-shadow:0 2px 8px rgba(0,0,0,.15);animation:floaty 1.1s ease-out forwards;white-space:nowrap}
+@keyframes floaty{0%{opacity:0;transform:translate(-50%,10px) scale(.7)}20%{opacity:1;transform:translate(-50%,0) scale(1.1)}100%{opacity:0;transform:translate(-50%,-70px) scale(1)}}
+#fx{position:fixed;inset:0;pointer-events:none;z-index:90}
+.confirm .card{width:min(420px,100%);padding:24px;text-align:center}
+.confirm .card h3{margin:0 0 8px}
+.confirm .card p{color:var(--muted);margin:0 0 18px}
+.confirm .row{display:flex;gap:10px;justify-content:center}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:10px 0 30px;position:relative;z-index:1}
+
+@media (max-width:640px){
+  .top{gap:10px;padding-top:14px}
+  .logo{width:44px;height:44px}.logo .nuc{inset:16px}
+  .stats{margin-left:0;width:100%}
+  .lvl{flex:1 1 100%}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(78px,1fr));gap:8px}
+  .tile .nm{font-size:10.5px}
+  .tile .num{font-size:11px;top:3px;left:6px}.tile .stt{font-size:10.5px;top:3px;right:6px}
+  .tile .zh{display:none}
+  .toolbar{gap:7px;margin:4px 0 10px}
+  .kbd{display:none}
+  .seg button{padding:6px 9px;font-size:13.5px}
+  .legend{gap:4px 12px;font-size:12px}
+  .chip{padding:5px 10px}
+  .chead{padding:18px 16px 14px;gap:14px}
+  .bigtile{width:88px;height:96px}.bigtile .s{font-size:40px}
+  .ctitle h2{font-size:23px}
+  .cbody{padding:4px 16px 14px}
+  .cnav{padding:12px 16px 16px}
+  .arrow{display:none}
+  .fields{grid-template-columns:1fr}
+  .qcard{padding:18px 16px}
+  .score{font-size:52px}
+  .modal{padding:10px}
+  .card{max-height:calc(100dvh - 20px)}
+}
+@media (pointer:coarse){.kbd{display:none}}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div class="bg-atoms" id="bgAtoms" aria-hidden="true"></div>
+
+<header class="wrap top">
+  <div class="logo" aria-hidden="true"><div class="nuc"></div><div class="orb"></div><div class="orb"></div><div class="orb"></div><div class="e"></div></div>
+  <div class="brand">
+    <h1>元素週期表背誦站</h1>
+    <p>35 個常見元素 · 符號＋英文全稱</p>
+  </div>
+  <div class="stats">
+    <span class="chip lvl" title="答對題目可以賺取經驗值（XP）升級">Lv.<b id="lvNum">1</b> <span id="lvName">氫原子新手</span><span class="bar"><i id="xpBar"></i></span><b id="xpTxt">0</b></span>
+    <span class="chip" title="連續多少日有做測驗">🔥 <b id="dayStreak">0</b> 日</span>
+    <span class="chip" title="連續答對 3 次 = 掌握">⭐ <b><span id="masterTxt">0</span>/35</b></span>
+    <button class="iconbtn" id="achBtn" title="成就">🏅 <b id="achTxt">0</b></button>
+    <button class="iconbtn" id="sndBtn" title="開／關音效">🔊</button>
+  </div>
+</header>
+
+<nav class="tabs">
+  <div class="wrap">
+    <div class="tabbar" id="tabbar" role="tablist">
+      <span class="slider" aria-hidden="true"></span>
+      <button role="tab" id="tabR" class="on" aria-selected="true" aria-controls="review">📖 溫習區</button>
+      <button role="tab" id="tabQ" aria-selected="false" aria-controls="quiz">✏️ 測驗區</button>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <section id="review" class="panel" role="tabpanel" aria-labelledby="tabR">
+    <div class="toolbar">
+      <label class="search"><span aria-hidden="true">🔍</span><input id="q" type="search" placeholder="搜尋：符號、英文名、中文名或原子序" autocomplete="off" autocapitalize="off" spellcheck="false"></label>
+      <div class="seg" id="fCls" aria-label="分類">
+        <button class="on" data-c="all">全部</button><button data-c="me">金屬</button><button data-c="nm">非金屬</button><button data-c="se">半金屬</button>
+      </div>
+      <div class="seg" id="fSt" aria-label="狀態">
+        <button class="on" data-s="all">全部狀態</button><button data-s="s">固體 s</button><button data-s="l">液體 ℓ</button><button data-s="g">氣體 g</button>
+      </div>
+    </div>
+    <div class="toolbar">
+      <div class="seg" id="layout" aria-label="排列方式">
+        <button class="on" data-l="grid">🔢 原子序排列</button><button data-l="pt">🧩 週期表位置</button>
+      </div>
+      <button class="btn ghost sm" id="coverBtn">🙈 遮住答案自測</button>
+      <button class="btn sm" id="spinBtn">🎰 隨機抽一個</button>
+    </div>
+    <div class="legend">
+      <span><i style="background:var(--me)"></i>金屬 me</span>
+      <span><i style="background:var(--nm)"></i>非金屬 nm</span>
+      <span><i style="background:var(--se)"></i>半金屬 se</span>
+      <span>右上角：s 固體 · ℓ 液體 · g 氣體</span>
+      <span>★ 掌握程度 · <b style="color:var(--bad)">●</b> 答錯次數</span>
+    </div>
+    <p class="hint" id="rvHint" style="margin:-4px 0 12px">👆 點任何一格，看詳細介紹卡片。</p>
+    <div id="gridHost"></div>
+  </section>
+
+  <section id="quiz" class="panel hidden" role="tabpanel" aria-labelledby="tabQ"></section>
+</main>
+
+<footer>錯題紀錄只會保存在這部裝置的瀏覽器裏。</footer>
+
+<div id="modalHost"></div>
+<canvas id="fx" aria-hidden="true"></canvas>
+<script>
+/* ===== 元素資料（只包括講義上的 35 個元素） =====
+   c: me 金屬 / nm 非金屬 / se 半金屬   st: s 固 / l 液 / g 氣
+   p, g: 週期表位置（週期、族）   alt: 也算對的拼法
+   lat: 符號來自拉丁文等（符號和英文名對不上）
+   sp: 易拼錯提示，hl 用 {} 標出易錯字母   mx: 易混淆提示 */
+const ELEMENTS = [
+{n:1,s:"H",en:"Hydrogen",zh:"氫",c:"nm",st:"g",p:1,g:1,e:"🚀",
+ zi:"氫是宇宙中最輕、數量也最多的元素，太陽主要就是由氫組成。在常溫下，氫是無色、無味的氣體。氫和氧結合會生成水，所以每一滴水裏都有氫。氫燃燒後只會產生水，因此被用作火箭燃料，也用來推動氫燃料電池車。",
+ ei:"Hydrogen is the lightest and most abundant element in the universe — the Sun is made mostly of hydrogen. At room temperature, it is a colourless, odourless gas. Hydrogen combines with oxygen to form water, so every drop of water contains hydrogen. Burning hydrogen produces only water, so it is used as rocket fuel and to power hydrogen fuel-cell cars.",
+ sp:{hl:"H{y}drogen",zh:"第二個字母是 y，不是 i（不要寫成 Hidrogen）。"},
+ mx:"H 是氫，He 是氦，Hg 是汞，三個都以 H 開頭。"},
+{n:2,s:"He",en:"Helium",zh:"氦",c:"nm",st:"g",p:1,g:18,e:"🎈",
+ zi:"氦是一種貴氣體，幾乎不會和其他物質發生反應。在常溫下，它是無色、無味的氣體，而且比空氣輕得多。生日派對上會飄起來的氣球，裏面充的就是氦氣。醫院的磁力共振（MRI）掃描器，也要用液態氦來冷卻裏面的磁鐵。",
+ ei:"Helium is a noble gas, so it hardly reacts with anything. At room temperature, it is a colourless, odourless gas that is much lighter than air. The balloons that float at birthday parties are filled with helium. Liquid helium is also used to cool the magnets inside MRI scanners in hospitals."},
+{n:3,s:"Li",en:"Lithium",zh:"鋰",c:"me",st:"s",p:2,g:1,e:"🔋",
+ zi:"鋰是最輕的金屬，輕得可以浮在水面上。在常溫下，它是銀白色的固體，質地柔軟，用刀就可以切開。鋰很活潑，會和水反應，所以要保存在石蠟油中。手機、手提電腦和電動車用的「鋰離子電池」都含有鋰。",
+ ei:"Lithium is the lightest metal — it is so light that it can float on water. At room temperature, it is a soft, silvery-white solid that can be cut with a knife. It is reactive and reacts with water, so it is stored in paraffin oil. The lithium-ion batteries in mobile phones, laptops and electric cars all contain lithium.",
+ sp:{hl:"Li{th}ium",zh:"中間是 th，結尾是 -ium。"}},
+{n:4,s:"Be",en:"Beryllium",zh:"鈹",c:"me",st:"s",p:2,g:2,e:"🛰️",
+ zi:"鈹是一種很輕但非常堅硬的金屬。在常溫下，它是銀灰色的固體。祖母綠和海藍寶這些寶石裏都含有鈹。因為又輕又硬，鈹被用來製造人造衛星和太空望遠鏡的零件，不過鈹的粉塵有毒，不可以吸入。",
+ ei:"Beryllium is a very light but very hard metal. At room temperature, it is a steel-grey solid. Gemstones such as emeralds and aquamarines contain beryllium. Because it is light and stiff, it is used in parts of satellites and space telescopes, but its dust is toxic and must not be breathed in.",
+ sp:{hl:"Ber{y}{ll}ium",zh:"Ber 之後是 y（不是 i），然後是雙 l：Ber-y-ll-ium。"},
+ mx:"B 是硼，Be 是鈹，Br 是溴。"},
+{n:5,s:"B",en:"Boron",zh:"硼",c:"se",st:"s",p:2,g:13,e:"🧪",
+ zi:"硼是一種半金屬，性質介乎金屬和非金屬之間。在常溫下，它是黑色或深褐色的堅硬固體。實驗室的燒杯等耐熱玻璃器皿加入了硼，令玻璃受熱時不易破裂。硼也是植物生長所需的微量元素，所以部分肥料中含有硼。",
+ ei:"Boron is a semi-metal, with properties between those of metals and non-metals. At room temperature, it is a hard, black or dark brown solid. Heat-resistant glassware, such as laboratory beakers, contains boron, which stops the glass from cracking when heated. Plants need tiny amounts of boron to grow, so it is found in some fertilisers.",
+ sp:{hl:"Bor{o}n",zh:"結尾是 -on，不是 -un 或 -en。"},
+ mx:"B 是硼，Be 是鈹，Br 是溴。"},
+{n:6,s:"C",en:"Carbon",zh:"碳",c:"nm",st:"s",p:2,g:14,e:"✏️",
+ zi:"碳是構成所有生物的重要元素，人體、植物和食物中都有碳。在常溫下，碳是固體，常見的形態有石墨和鑽石。鉛筆芯其實不是鉛，而是石墨（碳）混合黏土製成的。燒烤用的木炭，主要成分也是碳。",
+ ei:"Carbon is a key element in all living things — it is found in our bodies, in plants and in food. At room temperature, carbon is a solid; two common forms are graphite and diamond. The “lead” in a pencil is not lead at all — it is graphite (carbon) mixed with clay. The charcoal used for barbecues is also mainly carbon.",
+ mx:"C 已經被碳用了，所以氯、鈣、鉻、鈷、銅要用兩個字母：Cl、Ca、Cr、Co、Cu。"},
+{n:7,s:"N",en:"Nitrogen",zh:"氮",c:"nm",st:"g",p:2,g:15,e:"🌬️",
+ zi:"氮是空氣中含量最多的氣體，約佔空氣的 78%。在常溫下，它是無色、無味的氣體，而且不太活潑。薯片包裝袋裏充入氮氣，可以防止薯片變壞和被壓碎。氮也是製造肥料的重要原料，能幫助植物生長。",
+ ei:"Nitrogen is the most common gas in air, making up about 78% of it. At room temperature, it is a colourless, odourless and fairly unreactive gas. Bags of potato chips are filled with nitrogen to keep the chips fresh and stop them from being crushed. Nitrogen is also important for making fertilisers that help plants grow.",
+ mx:"N 是氮，Ne 是氖，Na 是鈉，Ni 是鎳。"},
+{n:8,s:"O",en:"Oxygen",zh:"氧",c:"nm",st:"g",p:2,g:16,e:"🫁",
+ zi:"氧是我們呼吸時必需的氣體，約佔空氣的 21%。在常溫下，它是無色、無味的氣體。物質燃燒需要氧，沒有氧，火就會熄滅。醫院會為呼吸困難的病人提供氧氣，而水（H₂O）裏也含有氧。",
+ ei:"Oxygen is the gas we need to breathe, and it makes up about 21% of air. At room temperature, it is a colourless, odourless gas. Things need oxygen to burn — without oxygen, a fire goes out. Hospitals give oxygen to patients who have difficulty breathing, and water (H₂O) also contains oxygen.",
+ sp:{hl:"Ox{y}gen",zh:"中間是 y，不是 i（不要寫成 Oxigen）。"}},
+{n:9,s:"F",en:"Fluorine",zh:"氟",c:"nm",st:"g",p:2,g:17,e:"🦷",
+ zi:"氟是所有元素中最活潑的非金屬，幾乎能和所有物質反應。在常溫下，它是淡黃色的氣體，而且有劇毒。不過，含氟的化合物（氟化物）卻很有用，很多牙膏都加入了氟化物來預防蛀牙。香港的食水也加入了少量氟化物。",
+ ei:"Fluorine is the most reactive non-metal — it reacts with almost everything. At room temperature, it is a pale yellow, highly poisonous gas. However, compounds of fluorine (fluorides) are very useful, and many toothpastes contain fluoride to prevent tooth decay. A small amount of fluoride is also added to Hong Kong’s drinking water.",
+ sp:{hl:"Fl{uo}r{ine}",zh:"是 Fl-u-o-rine：先 u 後 o！不要寫成 Flourine（flour 是麵粉）。結尾是 -ine。"}},
+{n:10,s:"Ne",en:"Neon",zh:"氖",c:"nm",st:"g",p:2,g:18,e:"🌃",
+ zi:"氖是一種貴氣體，非常不活潑。在常溫下，它是無色、無味的氣體。當電流通過氖氣時，會發出鮮豔的橙紅色光。香港街頭傳統的「霓虹燈」招牌，「霓虹」二字就是來自氖的英文名 Neon。",
+ ei:"Neon is a noble gas and is very unreactive. At room temperature, it is a colourless, odourless gas. When electricity passes through neon, it gives out a bright orange-red glow. The traditional “neon signs” on Hong Kong streets are named after this gas.",
+ mx:"Ne 第二個字母是小寫 e（寫成 NE 就錯）。N 是氮，Na 是鈉，Ni 是鎳。"},
+{n:11,s:"Na",en:"Sodium",zh:"鈉",c:"me",st:"s",p:3,g:1,e:"🧂",
+ zi:"鈉是一種非常活潑的金屬，和水會劇烈反應，所以要保存在石蠟油中。在常溫下，它是銀白色的固體，軟得可以用刀切開。我們每天吃的食鹽，化學名稱是氯化鈉（NaCl）。街上一些發出黃色光的街燈，就是鈉燈。",
+ ei:"Sodium is a very reactive metal that reacts violently with water, so it is stored in paraffin oil. At room temperature, it is a silvery-white solid that is soft enough to be cut with a knife. The table salt we eat every day is sodium chloride (NaCl). Some street lamps that glow yellow are sodium lamps.",
+ lat:{w:"Natrium",zh:"符號 Na 來自拉丁文 Natrium。這個名稱源自古代一種含鈉的天然礦物 natron（天然鹼）。所以鈉的符號是 Na，而不是 So。",en:"The symbol Na comes from the Latin name Natrium, named after natron, a natural sodium mineral."},
+ mx:"Na 是鈉，N 是氮，Ne 是氖，Ni 是鎳。"},
+{n:12,s:"Mg",en:"Magnesium",zh:"鎂",c:"me",st:"s",p:3,g:2,e:"🎆",
+ zi:"鎂是一種輕的金屬。在常溫下，它是銀白色的固體，實驗室裏常見的是一條條的鎂帶。鎂燃燒時會發出非常耀眼的白光，所以被用來製造煙花和照明彈。鎂合金又輕又堅固，常用於手提電腦外殼和單車零件。",
+ ei:"Magnesium is a light metal. At room temperature, it is a silvery-white solid, often seen in the lab as magnesium ribbon. It burns with a dazzling white light, so it is used in fireworks and flares. Magnesium alloys are light and strong, so they are used in laptop cases and bicycle parts.",
+ sp:{hl:"Magn{e}sium",zh:"是 Magn-e-sium（-esium），不是 -isium。"},
+ mx:"Mg（鎂 Magnesium）和 Mn（錳 Manganese）最易撈亂：Ma-g-nesium 取 g，Ma-n-ganese 取 n。"},
+{n:13,s:"Al",en:"Aluminium",zh:"鋁",c:"me",st:"s",p:3,g:13,e:"✈️",alt:["Aluminum"],
+ zi:"鋁是地殼中含量最多的金屬。在常溫下，它是銀白色的固體，又輕又不易被腐蝕。汽水罐和廚房用的「錫紙」（其實是鋁箔）都是用鋁造的。飛機機身也大量使用鋁合金，因為它輕而堅固。",
+ ei:"Aluminium is the most abundant metal in the Earth’s crust. At room temperature, it is a light, silvery-white solid that does not corrode easily. Drink cans and kitchen foil (often called “tin foil”, but really aluminium foil) are made of aluminium. Aircraft bodies also use a lot of aluminium alloys because they are light and strong.",
+ sp:{hl:"Alumin{i}um",zh:"英式拼法 Aluminium（-inium，多一個 i），美式拼法 Aluminum；兩種都算對。"},
+ mx:"Al 第二個字母是小寫 l（L），不是大寫 I。"},
+{n:14,s:"Si",en:"Silicon",zh:"硅",c:"se",st:"s",p:3,g:14,e:"💻",
+ zi:"硅是一種半金屬，也是地殼中含量第二多的元素（僅次於氧）。在常溫下，它是帶金屬光澤的灰色固體。沙和石英的主要成分是二氧化硅，可用來製造玻璃。硅是半導體，電腦和手機裏的晶片都用硅製造。",
+ ei:"Silicon is a semi-metal and the second most abundant element in the Earth’s crust (after oxygen). At room temperature, it is a shiny grey solid. Sand and quartz are mainly silicon dioxide, which is used to make glass. Silicon is a semiconductor, so the chips inside computers and phones are made from it.",
+ sp:{hl:"Silic{on}",zh:"結尾是 -on，最後沒有 e。Silicone（硅膠）是另一種物質。"},
+ mx:"S 是硫，Si 是硅，Sn 是錫。"},
+{n:15,s:"P",en:"Phosphorus",zh:"磷",c:"nm",st:"s",p:3,g:15,e:"🔥",
+ zi:"磷是一種非金屬，常見的有白磷和紅磷。在常溫下，磷是固體；白磷在空氣中會自燃，所以要保存在水中。火柴盒側面的擦紙含有紅磷，擦火柴時便能點火。磷也是肥料的重要成分，我們的骨骼和牙齒中也含有磷。",
+ ei:"Phosphorus is a non-metal that comes in forms such as white phosphorus and red phosphorus. At room temperature, it is a solid; white phosphorus catches fire by itself in air, so it is stored under water. The striking strip on the side of a matchbox contains red phosphorus, which helps light the match. Phosphorus is also important in fertilisers, and our bones and teeth contain it too.",
+ sp:{hl:"{Ph}os{ph}or{us}",zh:"有兩個 ph（不是 f）：Ph-os-ph-orus；結尾是 -orus，不是 -ous。"},
+ mx:"P 是磷，Pt 是鉑，Pb 是鉛。"},
+{n:16,s:"S",en:"Sulphur",zh:"硫",c:"nm",st:"s",p:3,g:16,e:"🌋",alt:["Sulfur"],
+ zi:"硫是一種黃色的非金屬。在常溫下，它是黃色的固體，又脆又容易碎。火山口附近常常可以找到硫，溫泉的「臭雞蛋味」也來自含硫的物質。硫可以用來製造硫酸、火藥和橡膠輪胎。",
+ ei:"Sulphur is a yellow non-metal. At room temperature, it is a brittle yellow solid. Sulphur is often found near volcanoes, and the “rotten egg” smell of hot springs comes from a sulphur compound. Sulphur is used to make sulphuric acid, gunpowder and rubber tyres.",
+ sp:{hl:"Sul{ph}{ur}",zh:"英式 Sulphur（ph）和美式 Sulfur（f）都算對；結尾是 -ur，不是 -er。"},
+ mx:"S 是硫，Si 是硅，Sn 是錫。"},
+{n:17,s:"Cl",en:"Chlorine",zh:"氯",c:"nm",st:"g",p:3,g:17,e:"🏊",
+ zi:"氯是一種有刺激性氣味的有毒氣體。在常溫下，它是黃綠色的氣體。泳池那陣「漂白水味」，來自水中加入的含氯消毒劑。家用漂白水和自來水消毒都會用到氯，而食鹽（氯化鈉）裏同樣有氯。",
+ ei:"Chlorine is a poisonous gas with a choking smell. At room temperature, it is a yellowish-green gas. The “bleach” smell at swimming pools comes from chlorine-based disinfectants added to the water. Chlorine is also used in household bleach and to disinfect tap water, and table salt (sodium chloride) contains chlorine too.",
+ sp:{hl:"C{h}lor{ine}",zh:"開頭是 Chl（有 h），結尾是 -ine。"},
+ mx:"Cl 第二個字母是小寫 l（L），不是大寫 I。C 開頭的還有 Ca、Cr、Co、Cu。"},
+{n:18,s:"Ar",en:"Argon",zh:"氬",c:"nm",st:"g",p:3,g:18,e:"💡",
+ zi:"氬是一種非常不活潑的貴氣體，也是空氣中含量第三多的氣體（約 1%）。在常溫下，它是無色、無味的氣體。傳統鎢絲燈泡裏充入氬氣，可以保護燈絲不被燒斷。焊接金屬時，也會用氬氣把空氣隔開。",
+ ei:"Argon is a very unreactive noble gas and the third most common gas in air (about 1%). At room temperature, it is a colourless, odourless gas. Traditional filament light bulbs are filled with argon to stop the filament from burning out. Argon is also used in welding to keep air away from the hot metal.",
+ mx:"Ar 是氬（Argon），Ag 是銀（Argentum），Au 是金。"},
+{n:19,s:"K",en:"Potassium",zh:"鉀",c:"me",st:"s",p:4,g:1,e:"🍌",
+ zi:"鉀是比鈉更活潑的金屬，放進水中會燃起淡紫色的火焰。在常溫下，它是銀白色的固體，軟得可以用刀切開，所以要保存在石蠟油中。香蕉含有豐富的鉀，人體需要鉀來維持神經和肌肉正常運作。很多肥料也含有鉀。",
+ ei:"Potassium is even more reactive than sodium — it burns with a lilac flame on water. At room temperature, it is a soft, silvery-white solid that can be cut with a knife, and it is stored in paraffin oil. Bananas are rich in potassium, which our nerves and muscles need to work properly. Many fertilisers also contain potassium.",
+ lat:{w:"Kalium",zh:"符號 K 來自拉丁文 Kalium，這個字源自阿拉伯文 al-qalī（植物燒成的灰）。古人從草木灰（potash）中提取含鉀的物質，所以鉀的符號是 K，而不是 P 或 Po。",en:"The symbol K comes from the Latin name Kalium, from the Arabic al-qalī, meaning “plant ashes” (potash)."},
+ sp:{hl:"Pota{ss}ium",zh:"中間是雙 s：Po-ta-ss-ium。"}},
+{n:20,s:"Ca",en:"Calcium",zh:"鈣",c:"me",st:"s",p:4,g:2,e:"🦴",
+ zi:"鈣是一種金屬，也是骨骼和牙齒的主要成分之一。在常溫下，它是銀白色的固體。牛奶、芝士和豆腐都含有豐富的鈣。雲石、石灰石和蛋殼的主要成分是碳酸鈣（CaCO₃），裏面都有鈣。",
+ ei:"Calcium is a metal and one of the main elements in our bones and teeth. At room temperature, it is a silvery-white solid. Milk, cheese and tofu are rich in calcium. Marble, limestone and eggshells are mainly calcium carbonate (CaCO₃), so they all contain calcium.",
+ sp:{hl:"Cal{c}ium",zh:"Cal-c-ium：中間是 c，不是 s。"},
+ mx:"Ca 是鈣，Co 是鈷，Cu 是銅，Cr 是鉻，Cl 是氯。"},
+{n:24,s:"Cr",en:"Chromium",zh:"鉻",c:"me",st:"s",p:4,g:6,e:"🚰",
+ zi:"鉻是一種很硬、很有光澤的金屬。在常溫下，它是帶藍色光澤的銀白色固體。水龍頭和單車零件表面常有一層亮晶晶的鍍鉻，既美觀又防鏽。不鏽鋼也含有鉻，令它不容易生鏽。",
+ ei:"Chromium is a very hard and shiny metal. At room temperature, it is a silvery solid with a bluish shine. Taps and bicycle parts are often chrome-plated to make them shiny and rust-resistant. Stainless steel also contains chromium, which stops it from rusting.",
+ sp:{hl:"C{h}romium",zh:"開頭是 Chr（有 h）：Chr-o-mium；符號卻是 Cr。"},
+ mx:"Cr 是鉻，Ca 是鈣，Co 是鈷，Cu 是銅，Cl 是氯。"},
+{n:25,s:"Mn",en:"Manganese",zh:"錳",c:"me",st:"s",p:4,g:7,e:"🔋",
+ zi:"錳是一種堅硬但很脆的金屬。在常溫下，它是銀灰色的固體。日常用的乾電池裏面有二氧化錳（MnO₂）。錳也會加入鋼中，製成堅硬耐磨的錳鋼，用來造路軌等。",
+ ei:"Manganese is a hard but brittle metal. At room temperature, it is a silvery-grey solid. Everyday batteries (dry cells) contain manganese dioxide (MnO₂). Manganese is also added to steel to make tough, hard-wearing manganese steel for things like railway tracks.",
+ sp:{hl:"Manga{nese}",zh:"Man-ga-nese：結尾是 -ese，不是 -ium！"},
+ mx:"Mn（錳 Manganese）和 Mg（鎂 Magnesium）最易撈亂：Ma-n-ganese 取 n，Ma-g-nesium 取 g。"},
+{n:26,s:"Fe",en:"Iron",zh:"鐵",c:"me",st:"s",p:4,g:8,e:"🧲",
+ zi:"鐵是人類用得最多的金屬，鋼主要就是由鐵造成。在常溫下，它是銀灰色的固體，可以被磁鐵吸住。鐵在潮濕的空氣中容易生鏽，變成紅褐色的鐵鏽。我們血液中的血紅蛋白也含有鐵，負責運送氧氣。",
+ ei:"Iron is the most widely used metal, and steel is made mainly of iron. At room temperature, it is a silvery-grey solid that is attracted by magnets. In moist air, iron rusts easily and turns into reddish-brown rust. The haemoglobin in our blood also contains iron, which helps carry oxygen around the body.",
+ lat:{w:"Ferrum",zh:"符號 Fe 來自拉丁文 Ferrum（鐵）。英文 ferrous（含鐵的）也是來自這個字。",en:"The symbol Fe comes from the Latin word Ferrum, meaning iron. The English word “ferrous” comes from it too."}},
+{n:27,s:"Co",en:"Cobalt",zh:"鈷",c:"me",st:"s",p:4,g:9,e:"🔵",
+ zi:"鈷是一種堅硬的金屬，和鐵一樣有磁性。在常溫下，它是銀灰色的固體。鈷的化合物可以把玻璃和瓷器染成漂亮的「鈷藍色」，青花瓷的藍色就是來自鈷。實驗室用來測試水的氯化鈷試紙，以及很多充電池，都含有鈷。",
+ ei:"Cobalt is a hard metal that is magnetic, just like iron. At room temperature, it is a silvery-grey solid. Cobalt compounds give glass and porcelain a beautiful “cobalt blue” colour — the blue in Chinese blue-and-white porcelain comes from cobalt. Cobalt chloride paper, used in the lab to test for water, and many rechargeable batteries contain cobalt.",
+ sp:{hl:"Cob{alt}",zh:"結尾是 -alt：Co-balt。"},
+ mx:"Co（小寫 o）是鈷；寫成 CO（兩個大寫）就變成一氧化碳！Cu 是銅，Ca 是鈣。"},
+{n:28,s:"Ni",en:"Nickel",zh:"鎳",c:"me",st:"s",p:4,g:10,e:"🪙",
+ zi:"鎳是一種有光澤、不易生鏽的金屬。在常溫下，它是銀白色的固體，而且有磁性。很多硬幣都含有鎳，部分香港硬幣就是用銅鎳合金製造，美國的五仙硬幣更直接叫做 nickel。不鏽鋼裏也有鎳。",
+ ei:"Nickel is a shiny metal that does not rust easily. At room temperature, it is a silvery-white solid, and it is magnetic. Many coins contain nickel — some Hong Kong coins are made of a copper–nickel alloy, and the US 5-cent coin is even called a “nickel”. Stainless steel also contains nickel.",
+ sp:{hl:"Nick{el}",zh:"結尾是 -el，不是 -le（不要寫成 Nickle）。"},
+ mx:"Ni 是鎳，N 是氮，Ne 是氖，Na 是鈉。"},
+{n:29,s:"Cu",en:"Copper",zh:"銅",c:"me",st:"s",p:4,g:11,e:"🔌",
+ zi:"銅是一種導電能力非常好的金屬。在常溫下，它是紅褐色、有光澤的固體。家中電線裏面的金屬線大多是銅。銅也用來造水管和硬幣，放久了表面會生出一層綠色的「銅綠」。",
+ ei:"Copper is a metal that conducts electricity very well. At room temperature, it is a shiny reddish-brown solid. Most electrical wires in our homes are made of copper. Copper is also used for water pipes and coins, and over time it can form a green coating called verdigris.",
+ lat:{w:"Cuprum",zh:"符號 Cu 來自拉丁文 Cuprum，原意是「塞浦路斯的金屬」，因為古羅馬人主要從塞浦路斯島取得銅。",en:"The symbol Cu comes from the Latin word Cuprum, meaning “metal of Cyprus”, because the Romans got most of their copper from the island of Cyprus."},
+ sp:{hl:"Co{pp}er",zh:"中間是雙 p：Co-pp-er。"},
+ mx:"Cu 是銅，Co 是鈷，Ca 是鈣，Cr 是鉻。"},
+{n:30,s:"Zn",en:"Zinc",zh:"鋅",c:"me",st:"s",p:4,g:12,e:"🪣",
+ zi:"鋅是一種常見的金屬，常用來保護鐵不生鏽。在常溫下，它是藍白色的固體。在鐵表面鍍上一層鋅，就成為「鍍鋅鐵」，常用來造鐵桶和鐵絲網。乾電池的外殼也用到鋅，而且鋅也是人體必需的微量元素。",
+ ei:"Zinc is a common metal that is often used to protect iron from rusting. At room temperature, it is a bluish-white solid. Iron coated with a layer of zinc is called galvanised iron, which is used for buckets and wire fences. Zinc is also used in the casings of dry cells, and our bodies need small amounts of it.",
+ sp:{hl:"Zin{c}",zh:"結尾是 c，不是 k（不要寫成 Zink）。"}},
+{n:35,s:"Br",en:"Bromine",zh:"溴",c:"nm",st:"l",p:4,g:17,e:"⚗️",
+ zi:"溴是一種鹵素（和氟、氯、碘同一族），也是唯一在常溫下是液體的非金屬。在常溫下，它是紅褐色的液體，很容易揮發出有刺激性臭味的有毒蒸氣。它的英文名來自希臘文 bromos，意思就是「臭味」。溴的化合物可用作阻燃劑，令物件不易着火，也可用於按摩池的消毒。",
+ ei:"Bromine is a halogen (in the same group as fluorine, chlorine and iodine), and it is the only non-metal that is a liquid at room temperature. It is a reddish-brown liquid that easily gives off a choking, poisonous vapour. Its name comes from the Greek word bromos, meaning “stench”. Bromine compounds are used as flame retardants to make things harder to set on fire, and to disinfect hot tubs.",
+ sp:{hl:"Brom{ine}",zh:"結尾是 -ine，和 Fluorine、Chlorine、Iodine 一樣。"},
+ mx:"Br 是溴，B 是硼，Be 是鈹。"},
+{n:47,s:"Ag",en:"Silver",zh:"銀",c:"me",st:"s",p:5,g:11,e:"🥈",
+ zi:"銀是導電和導熱能力最好的金屬。在常溫下，它是有光澤的銀白色固體。銀常用來製造首飾、餐具和獎牌，比賽第二名得到的就是銀牌。銀和空氣中的硫化物接觸後會慢慢變黑，所以銀器要經常打磨。",
+ ei:"Silver is the best conductor of electricity and heat of all metals. At room temperature, it is a shiny, silvery-white solid. Silver is used to make jewellery, cutlery and medals — second place wins a silver medal. Silver slowly turns black when it reacts with sulphur compounds in the air, so silverware needs polishing.",
+ lat:{w:"Argentum",zh:"符號 Ag 來自拉丁文 Argentum（銀，意思是「明亮、閃亮」）。南美洲國家阿根廷（Argentina）的名字，就是來自「銀」！",en:"The symbol Ag comes from the Latin word Argentum, meaning silver. The country Argentina is named after silver!"},
+ mx:"Ag 是銀，Au 是金，千萬不要調轉！"},
+{n:50,s:"Sn",en:"Tin",zh:"錫",c:"me",st:"s",p:5,g:14,e:"🥫",
+ zi:"錫是一種柔軟、不易生鏽的金屬。在常溫下，它是銀白色的固體。罐頭用的「馬口鐵」，就是在鐵片表面鍍上一層錫來防鏽。錫是焊接電子零件用的焊錫的主要成分，而青銅就是銅和錫的合金。",
+ ei:"Tin is a soft metal that does not rust easily. At room temperature, it is a silvery-white solid. Food cans are made of steel coated with a thin layer of tin to stop rusting. Tin is the main metal in solder for joining electronic parts, and bronze is an alloy of copper and tin.",
+ lat:{w:"Stannum",zh:"符號 Sn 來自拉丁文 Stannum（錫）。",en:"The symbol Sn comes from the Latin word Stannum, meaning tin."},
+ mx:"Sn 是錫，S 是硫，Si 是硅。"},
+{n:53,s:"I",en:"Iodine",zh:"碘",c:"nm",st:"s",p:5,g:17,e:"🩹",
+ zi:"碘是一種鹵素，和氯、溴同屬一族。在常溫下，它是有光澤的紫黑色固體，加熱時會直接變成紫色的蒸氣。人體需要碘來製造甲狀腺激素，所以有些食鹽會加入碘（碘鹽）。碘酒（碘的溶液）可以用來消毒傷口。",
+ ei:"Iodine is a halogen, in the same group as chlorine and bromine. At room temperature, it is a shiny, purple-black solid that turns straight into a purple vapour when heated. Our bodies need iodine to make thyroid hormones, so some table salt has iodine added (iodised salt). Tincture of iodine (an iodine solution) can be used to disinfect wounds.",
+ sp:{hl:"Iod{ine}",zh:"I-o-d-ine：結尾是 -ine。"},
+ mx:"碘的符號是大寫 I（i），不是小寫 l（L）。"},
+{n:78,s:"Pt",en:"Platinum",zh:"鉑",c:"me",st:"s",p:6,g:10,e:"💍",
+ zi:"鉑又叫「白金」，是一種非常稀有、貴重的金屬。在常溫下，它是銀白色的固體，而且很不活潑，不會生鏽或變色。鉑常被用來製造首飾，例如結婚戒指。汽車的催化轉換器裏也有鉑，可以減少廢氣中的污染物。",
+ ei:"Platinum — called “white gold” (白金) in Chinese — is a very rare and precious metal. At room temperature, it is a silvery-white solid that is very unreactive, so it does not rust or tarnish. Platinum is often used to make jewellery, such as wedding rings. Car catalytic converters also contain platinum to help reduce harmful exhaust gases.",
+ sp:{hl:"Plati{num}",zh:"結尾是 -num，不是 -nium（不要寫成 Platinium）。"},
+ mx:"Pt 是鉑，Pb 是鉛，P 是磷。"},
+{n:79,s:"Au",en:"Gold",zh:"金",c:"me",st:"s",p:6,g:11,e:"🥇",
+ zi:"金是一種非常貴重、閃亮的金屬。在常溫下，它是金黃色的固體。金極不活潑，放上千年也不會生鏽或失去光澤，所以常用來製造首飾、金幣和金牌。金的導電性很好，手機和電腦的電路板上也有少量金。",
+ ei:"Gold is a precious, shiny metal. At room temperature, it is a yellow solid. Gold is extremely unreactive — it stays shiny for thousands of years without rusting — so it is used to make jewellery, coins and medals. Gold is also a good conductor, so tiny amounts are used in the circuit boards of phones and computers.",
+ lat:{w:"Aurum",zh:"符號 Au 來自拉丁文 Aurum（金），和「閃耀的黎明」有關，就像金光閃閃的曙光。",en:"The symbol Au comes from the Latin word Aurum, meaning gold, linked to the idea of the shining dawn."},
+ mx:"Au 是金，Ag 是銀，千萬不要調轉！"},
+{n:80,s:"Hg",en:"Mercury",zh:"汞",c:"me",st:"l",p:6,g:12,e:"🌡️",
+ zi:"汞俗稱「水銀」，是唯一在常溫下是液體的金屬。在常溫下，它是銀白色、會流動的液體。舊式的溫度計和血壓計裏會見到汞，但因為汞和汞蒸氣有毒，現在已逐漸被取代。部分慳電膽和光管含有少量汞，所以不可以隨便丟棄。",
+ ei:"Mercury, also called quicksilver, is the only metal that is a liquid at room temperature. It is a silvery-white liquid that flows easily. Mercury was used in old thermometers and blood pressure monitors, but it is being replaced because mercury and its vapour are poisonous. Some energy-saving bulbs and fluorescent tubes contain a little mercury, so they must not be thrown away carelessly.",
+ lat:{w:"Hydrargyrum",zh:"符號 Hg 來自拉丁化的希臘文 Hydrargyrum，意思是「水一樣的銀」（hydr- 水 + argyros 銀）。所以中文也叫它「水銀」！",en:"The symbol Hg comes from Hydrargyrum, a Latin form of a Greek word meaning “water-silver” (liquid silver)."},
+ sp:{hl:"Merc{u}ry",zh:"Merc-u-ry：中間是 u，不是 e（不要寫成 Mercery）。"},
+ mx:"Hg 是汞，H 是氫，He 是氦。"},
+{n:82,s:"Pb",en:"Lead",zh:"鉛",c:"me",st:"s",p:6,g:14,e:"🚗",
+ zi:"鉛是一種很重、很軟的金屬。在常溫下，它是藍灰色的固體。汽車用的蓄電池（鉛酸電池）裏有大量鉛，而且鉛能阻擋 X 光，所以醫院照 X 光時會用含鉛的保護衣。鉛有毒，所以現在已不再用於油漆和汽油中。",
+ ei:"Lead is a very heavy and soft metal. At room temperature, it is a bluish-grey solid. Car batteries (lead–acid batteries) contain a lot of lead, and lead can block X-rays, so lead aprons are used in hospitals during X-ray scans. Because lead is poisonous, it is no longer used in paint or petrol.",
+ lat:{w:"Plumbum",zh:"符號 Pb 來自拉丁文 Plumbum（鉛）。古羅馬人用鉛造水管，所以英文的水喉匠 plumber 也是來自這個字！",en:"The symbol Pb comes from the Latin word Plumbum. The Romans made water pipes from lead, which is why a “plumber” is called a plumber!"},
+ sp:{hl:"L{ea}d",zh:"只有 4 個字母 L-e-a-d；元素讀 /led/（和 bed 押韻），不是動詞 lead（帶領）的讀音。"},
+ mx:"Pb 是鉛，Pt 是鉑，P 是磷。"}
+];
+
+/* ===== 核心：工具、紀錄、音效、特效、經驗值、成就 ===== */
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const BY_N={}; ELEMENTS.forEach(e=>BY_N[e.n]=e);
+const CLS={me:"金屬",nm:"非金屬",se:"半金屬"};
+const STATE={s:"固體",l:"液體",g:"氣體"}, ST_SYM={s:"s",l:"ℓ",g:"g"};
+const LATIN_NS=ELEMENTS.filter(e=>e.lat).map(e=>e.n);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const reduceMotion=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* ---------- 紀錄（localStorage） ---------- */
+const KEY="ptq-records-v1";
+const fresh=()=>({el:{},xp:0,best:{},ach:{},seen:[],spelled:[],day:{date:"",streak:0,today:0},total:0,maxCombo:0,quizzes:0});
+let ST=fresh(), SOUND=true;
+function load(){
+  try{const raw=localStorage.getItem(KEY); if(raw) ST=Object.assign(fresh(),JSON.parse(raw));}catch(e){}
+  try{SOUND=localStorage.getItem("ptq-sound")!=="0";}catch(e){}
+}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(ST));}catch(e){}}
+const rec=n=>ST.el[n]||(ST.el[n]={w:0,r:0,k:0});
+const stars=n=>ST.el[n]?Math.min(ST.el[n].k,3):0;
+const starStr=n=>"★".repeat(stars(n))+"☆".repeat(3-stars(n));
+const masteredCount=()=>ELEMENTS.filter(e=>stars(e.n)>=3).length;
+
+/* ---------- 每日連續 ---------- */
+const dstr=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+const yday=()=>{const d=new Date(); d.setDate(d.getDate()-1); return dstr(d);};
+function touchDay(){
+  const t=dstr(new Date());
+  if(ST.day.date!==t){ST.day.streak=ST.day.date===yday()?ST.day.streak+1:1; ST.day.date=t; ST.day.today=0;}
+  ST.day.today++;
+}
+const currentStreak=()=>(ST.day.date===dstr(new Date())||ST.day.date===yday())?ST.day.streak:0;
+
+/* ---------- 等級 ---------- */
+const LEVELS=[[0,"氫原子新手"],[60,"化學學徒"],[150,"元素見習生"],[300,"元素獵人"],[500,"週期表探險家"],[800,"實驗室高手"],[1200,"元素魔法師"],[1700,"化學大師"],[2400,"週期表王者"],[3200,"門捷列夫傳人"]];
+function levelOf(xp){let i=0; while(i+1<LEVELS.length&&xp>=LEVELS[i+1][0]) i++; return i;}
+function updateHeader(){
+  const i=levelOf(ST.xp), lo=LEVELS[i][0], hi=LEVELS[i+1]?LEVELS[i+1][0]:lo;
+  $("#lvNum").textContent=i+1; $("#lvName").textContent=LEVELS[i][1];
+  $("#xpBar").style.width=(hi>lo?(ST.xp-lo)/(hi-lo)*100:100)+"%";
+  $("#xpTxt").textContent=ST.xp+" XP";
+  $("#dayStreak").textContent=currentStreak();
+  $("#masterTxt").textContent=masteredCount();
+  $("#achTxt").textContent=Object.keys(ST.ach).length+"/"+ACHS.length;
+  $("#sndBtn").textContent=SOUND?"🔊":"🔇";
+}
+function addXP(v,x,y){
+  if(v<=0) return;
+  const before=levelOf(ST.xp); ST.xp+=v; save();
+  if(x!=null) floaty("+"+v+" XP",x,y,"var(--accent)");
+  const after=levelOf(ST.xp);
+  if(after>before){sfx.level(); confetti(150); toast("🆙","升級！Lv."+(after+1)+" "+LEVELS[after][1],"繼續努力，向下一級進發！");}
+  updateHeader();
+}
+
+/* ---------- 音效（Web Audio，不用外部檔案） ---------- */
+let AC=null;
+function ac(){
+  if(!AC){try{AC=new (window.AudioContext||window.webkitAudioContext)();}catch(e){}}
+  if(AC&&AC.state==="suspended") AC.resume();
+  return AC;
+}
+function tone(f,d=.12,type="sine",vol=.18,delay=0){
+  if(!SOUND) return; const c=ac(); if(!c) return;
+  const t=c.currentTime+delay, o=c.createOscillator(), g=c.createGain();
+  o.type=type; o.frequency.setValueAtTime(f,t);
+  g.gain.setValueAtTime(.0001,t); g.gain.exponentialRampToValueAtTime(vol,t+.012); g.gain.exponentialRampToValueAtTime(.0001,t+d);
+  o.connect(g); g.connect(c.destination); o.start(t); o.stop(t+d+.05);
+}
+const sfx={
+  ok(){tone(880,.12,"triangle",.2); tone(1320,.18,"triangle",.18,.08);},
+  bad(){tone(196,.22,"sawtooth",.08); tone(150,.3,"sawtooth",.07,.1);},
+  flip(){tone(620,.06,"square",.05);},
+  tick(){tone(1100,.03,"square",.04);},
+  pop(){tone(440,.08,"sine",.12); tone(660,.1,"sine",.1,.05);},
+  combo(n){[523,659,784,1047].forEach((f,i)=>tone(f*(1+Math.min(n,20)/40),.14,"triangle",.16,i*.07));},
+  level(){[523,659,784,1047,1319].forEach((f,i)=>tone(f,.2,"triangle",.18,i*.09));},
+  win(){[784,988,1175,1568].forEach((f,i)=>tone(f,.25,"triangle",.17,i*.11));}
+};
+
+/* ---------- 彩紙特效 ---------- */
+const FX=$("#fx"), fctx=FX.getContext("2d"); let parts=[], fxOn=false;
+function sizeFX(){const d=Math.min(window.devicePixelRatio||1,2); FX.width=innerWidth*d; FX.height=innerHeight*d; fctx.setTransform(d,0,0,d,0,0);}
+function confetti(n=100,x=innerWidth/2,y=innerHeight*.35,power=1){
+  if(reduceMotion) return;
+  const cols=["#6d4aff","#f59e0b","#10b981","#ff5ca8","#38bdf8","#facc15"];
+  for(let i=0;i<n;i++){
+    const a=Math.random()*Math.PI*2, v=(3+Math.random()*8)*power;
+    parts.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v-6*power,r:Math.random()*6.28,vr:(Math.random()-.5)*.3,w:6+Math.random()*6,h:4+Math.random()*5,c:cols[i%cols.length],l:90+Math.random()*60});
+  }
+  if(!fxOn){fxOn=true; requestAnimationFrame(fxLoop);}
+}
+function fxLoop(){
+  fctx.clearRect(0,0,innerWidth,innerHeight);
+  parts=parts.filter(p=>p.l>0&&p.y<innerHeight+40);
+  for(const p of parts){
+    p.vy+=.25; p.vx*=.985; p.x+=p.vx; p.y+=p.vy; p.r+=p.vr; p.l--;
+    fctx.save(); fctx.translate(p.x,p.y); fctx.rotate(p.r); fctx.globalAlpha=Math.min(1,p.l/30);
+    fctx.fillStyle=p.c; fctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); fctx.restore();
+  }
+  if(parts.length) requestAnimationFrame(fxLoop); else {fxOn=false; fctx.clearRect(0,0,innerWidth,innerHeight);}
+}
+function floaty(text,x,y,color){
+  const d=document.createElement("div"); d.className="floaty"; d.textContent=text;
+  d.style.left=x+"px"; d.style.top=y+"px"; if(color) d.style.color=color;
+  document.body.appendChild(d); setTimeout(()=>d.remove(),1150);
+}
+let toastQ=[], toastBusy=false;
+function toast(i,t,s){toastQ.push([i,t,s]); if(!toastBusy) nextToast();}
+function nextToast(){
+  const it=toastQ.shift(); if(!it){toastBusy=false; return;} toastBusy=true;
+  const d=document.createElement("div"); d.className="toast"; d.setAttribute("role","status");
+  d.innerHTML=`<span class="i">${it[0]}</span><span><b>${esc(it[1])}</b><small>${esc(it[2]||"")}</small></span>`;
+  document.body.appendChild(d);
+  setTimeout(()=>{d.style.transition="opacity .3s,transform .3s"; d.style.opacity="0"; d.style.transform="translate(-50%,-30px)"; setTimeout(()=>{d.remove(); nextToast();},300);},2600);
+}
+
+/* ---------- 成就 ---------- */
+const ACHS=[
+  {id:"first",i:"🎉",t:"初試啼聲",d:"完成第一次測驗"},
+  {id:"c5",i:"🔥",t:"五連擊",d:"測驗中連續答對 5 題"},
+  {id:"c10",i:"⚡",t:"十連擊",d:"連續答對 10 題"},
+  {id:"c20",i:"🌋",t:"二十連擊",d:"連續答對 20 題"},
+  {id:"perfect",i:"💯",t:"完美默寫",d:"順序默寫取得滿分"},
+  {id:"fast",i:"⏱️",t:"閃電默寫",d:"3 分鐘內完成順序默寫，而且得分有 90% 或以上"},
+  {id:"latin",i:"🏛️",t:"拉丁文專家",d:"9 個符號來自拉丁文的元素，全部答對過"},
+  {id:"speller",i:"🔤",t:"拼字達人",d:"在元素卡的「拼寫挑戰」拼對 10 個元素"},
+  {id:"curious",i:"🔍",t:"好奇寶寶",d:"在溫習區打開全部 35 張元素卡"},
+  {id:"m10",i:"⭐",t:"小有所成",d:"掌握 10 個元素（★★★）"},
+  {id:"mall",i:"👑",t:"元素大師",d:"掌握全部 35 個元素"},
+  {id:"d3",i:"📅",t:"三日不斷",d:"連續 3 日都有做測驗"},
+  {id:"q100",i:"💪",t:"百題勇士",d:"累積作答 100 題"}
+];
+function unlock(id){
+  if(ST.ach[id]) return; ST.ach[id]=Date.now(); save();
+  const a=ACHS.find(x=>x.id===id); sfx.win(); confetti(90); toast(a.i,"解鎖成就："+a.t,a.d); updateHeader();
+}
+function checkAch(){
+  if(ST.maxCombo>=5) unlock("c5"); if(ST.maxCombo>=10) unlock("c10"); if(ST.maxCombo>=20) unlock("c20");
+  if(LATIN_NS.every(n=>ST.el[n]&&ST.el[n].r>0)) unlock("latin");
+  if(ST.spelled.length>=10) unlock("speller");
+  if(ST.seen.length>=ELEMENTS.length) unlock("curious");
+  const m=masteredCount(); if(m>=10) unlock("m10"); if(m>=ELEMENTS.length) unlock("mall");
+  if(currentStreak()>=3) unlock("d3"); if(ST.total>=100) unlock("q100");
+}
+function showAch(){
+  openModal(`<div class="card" role="dialog" aria-modal="true" aria-label="成就">
+    <button class="x" data-close aria-label="關閉">✕</button>
+    <div class="cbody" style="padding-top:22px"><h2 style="margin:0 0 4px">🏅 成就</h2>
+    <p class="hint" style="margin:0 0 14px">已解鎖 ${Object.keys(ST.ach).length} / ${ACHS.length}　·　累積作答 ${ST.total} 題　·　最高連擊 ${ST.maxCombo}</p>
+    <div class="badges">${ACHS.map(a=>`<div class="badge ${ST.ach[a.id]?"":"lock"}"><div class="i">${a.i}</div><div class="t">${a.t}</div><div class="d">${a.d}</div></div>`).join("")}</div></div></div>`);
+}
+
+/* ---------- 彈出視窗 ---------- */
+let modalClose=null, modalKey=null;
+function openModal(html,opts={}){
+  closeModal(true);
+  const host=$("#modalHost"); host.innerHTML=`<div class="modal ${opts.cls||""}">${html}</div>`;
+  const m=host.firstElementChild;
+  m.addEventListener("click",e=>{if(e.target===m||e.target.closest("[data-close]")) closeModal();});
+  modalClose=opts.onClose||null; modalKey=opts.onKey||null;
+  document.body.style.overflow="hidden";
+  return m;
+}
+function closeModal(silent){
+  const host=$("#modalHost"); if(!host.firstElementChild) return;
+  host.innerHTML=""; document.body.style.overflow="";
+  const f=modalClose; modalClose=null; modalKey=null; if(f&&!silent) f();
+}
+function ask(title,msg,ok="確定",danger=false){
+  return new Promise(res=>{
+    const m=openModal(`<div class="card" role="alertdialog" aria-modal="true"><h3>${title}</h3><p>${msg}</p>
+      <div class="row"><button class="btn ghost" data-a="0">取消</button><button class="btn ${danger?"danger":""}" data-a="1">${ok}</button></div></div>`,
+      {cls:"confirm",onClose:()=>res(false)});
+    m.querySelectorAll("[data-a]").forEach(b=>b.onclick=()=>{closeModal(true); res(b.dataset.a==="1");});
+    setTimeout(()=>{const b=m.querySelector('[data-a="1"]'); if(b) b.focus();},50);
+  });
+}
+document.addEventListener("keydown",e=>{
+  if(!$("#modalHost").firstElementChild) return;
+  if(modalKey&&modalKey(e)) return;
+  if(e.key==="Escape"){e.preventDefault(); closeModal();}
+});
+
+/* ---------- 讀音（瀏覽器內置語音） ---------- */
+const canSpeak="speechSynthesis" in window;
+let voiceEN=null;
+function pickVoice(){
+  if(!canSpeak) return; const v=speechSynthesis.getVoices();
+  voiceEN=v.find(x=>/en[-_]GB/i.test(x.lang))||v.find(x=>/^en/i.test(x.lang))||null;
+}
+if(canSpeak){pickVoice(); if(speechSynthesis.addEventListener) speechSynthesis.addEventListener("voiceschanged",pickVoice);}
+function speak(text,rate=.9){
+  if(!canSpeak) return; speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text); u.lang="en-GB"; if(voiceEN) u.voice=voiceEN; u.rate=rate;
+  speechSynthesis.speak(u);
+}
+
+/* ---------- 背景漂浮符號 ---------- */
+(function(){
+  const b=$("#bgAtoms"), syms=["H","He","Na","Fe","Au","O","C","Cu","Ag","Hg","K","Ca","Cl","Zn","Pb","Sn"];
+  for(let i=0;i<14;i++){
+    const s=document.createElement("span"); s.textContent=syms[i%syms.length];
+    s.style.left=(Math.random()*94)+"%"; s.style.fontSize=(22+Math.random()*40)+"px";
+    s.style.animationDuration=(18+Math.random()*22)+"s"; s.style.animationDelay=(-Math.random()*30)+"s";
+    b.appendChild(s);
+  }
+})();
+
+/* ===== 溫習區 ===== */
+const Review=(()=>{
+  const F={c:"all",s:"all",q:"",layout:"grid",cover:false};
+  let shown=ELEMENTS.slice(), spinning=false;
+
+  function match(e){
+    if(F.c!=="all"&&e.c!==F.c) return false;
+    if(F.s!=="all"&&e.st!==F.s) return false;
+    const q=F.q.trim().toLowerCase(); if(!q) return true;
+    return String(e.n)===q||e.s.toLowerCase().startsWith(q)||e.en.toLowerCase().includes(q)||
+      (e.alt||[]).some(a=>a.toLowerCase().includes(q))||e.zh.includes(q);
+  }
+  function tileHTML(e,i,style=""){
+    const r=ST.el[e.n], tried=r&&(r.r+r.w>0);
+    return `<button class="tile c-${e.c}" data-n="${e.n}" style="animation-delay:${Math.min(i*16,520)}ms;${style}" aria-label="${e.n} ${e.s} ${e.en} ${e.zh}">
+      <span class="in"><span class="f"><span class="num">${e.n}</span><span class="stt" title="${STATE[e.st]}">${ST_SYM[e.st]}</span>
+        <span class="sym">${e.s}</span><span class="nm">${e.en}</span><span class="zh">${e.zh}</span>${tried?`<span class="stars">${starStr(e.n)}</span>`:""}</span>
+      <span class="b"><span class="num">${e.n}</span><span class="q">?</span></span></span>
+      ${r&&r.w?`<span class="wrong" title="答錯 ${r.w} 次">${r.w}</span>`:""}</button>`;
+  }
+  function render(){
+    const host=$("#gridHost"); shown=ELEMENTS.filter(match);
+    const cv=F.cover?"cover":"";
+    if(F.layout==="grid"){
+      host.innerHTML=`<div class="grid ${cv}" id="grid">${shown.length?shown.map((e,i)=>tileHTML(e,i)).join(""):'<div class="empty">找不到符合的元素 🤔</div>'}</div>`;
+    }else{
+      const at={}; ELEMENTS.forEach(e=>at[e.p+"-"+e.g]=e);
+      const cells=[];
+      for(let p=1;p<=6;p++) for(let g=1;g<=18;g++){
+        const valid=p===1?(g===1||g===18):p<=3?(g<=2||g>=13):true; if(!valid) continue;
+        const e=at[p+"-"+g], pos=`grid-row:${p};grid-column:${g};`;
+        if(e) cells.push(tileHTML(e,cells.length,pos+(match(e)?"":"opacity:.18;filter:grayscale(1);")));
+        else cells.push(`<div class="vac" style="${pos}"></div>`);
+      }
+      host.innerHTML=`<div class="ptwrap"><div class="grid pt ${cv}" id="grid">${cells.join("")}</div></div>
+        <p class="hint" style="margin:0 0 30px">灰色格子是不用背的元素。手機可以左右滑動，看完整個週期表。</p>`;
+    }
+  }
+  function setCover(on){
+    F.cover=on;
+    $("#coverBtn").textContent=on?"👀 顯示全部答案":"🙈 遮住答案自測";
+    $("#rvHint").textContent=on?"🤔 先想想是哪個元素，再點一下翻開答案；翻開後再點一次就看介紹。":"👆 點任何一格，看詳細介紹卡片。";
+    render();
+  }
+  function spin(){
+    if(spinning) return;
+    const tiles=$$("#grid .tile").filter(t=>!t.style.opacity); if(!tiles.length) return;
+    spinning=true; let steps=14+Math.floor(Math.random()*8), i=Math.floor(Math.random()*tiles.length), delay=55, prev=null;
+    const hop=()=>{
+      if(prev) prev.classList.remove("spot");
+      const t=tiles[i]; t.classList.add("spot"); prev=t; sfx.tick();
+      if(--steps<=0){
+        setTimeout(()=>{t.classList.remove("spot"); spinning=false; sfx.pop(); openCard(+t.dataset.n);},450);
+        return;
+      }
+      if(tiles.length>1) i=(i+1+Math.floor(Math.random()*(tiles.length-1)))%tiles.length;
+      delay*=1.12; setTimeout(hop,delay);
+    };
+    hop();
+  }
+
+  /* ---------- 詳細介紹卡片 ---------- */
+  let cardN=null, cardList=ELEMENTS, tryDone=false;
+  const hl=s=>esc(s).replace(/\{([^}]*)\}/g,"<mark>$1</mark>");
+  function latinWord(e){
+    const w=e.lat.w, a=e.s[0], b=e.s[1];
+    if(!b) return `<u>${w[0]}</u>${w.slice(1)}`;
+    const j=w.toLowerCase().indexOf(b.toLowerCase(),1);
+    if(j===1) return `<u>${w.slice(0,2)}</u>${w.slice(2)}`;
+    return `<u>${w[0]}</u>${w.slice(1,j)}<u>${w[j]}</u>${w.slice(j+1)}`;
+  }
+  function openCard(n,list){
+    cardList=list||(shown.some(e=>e.n===n)?shown:ELEMENTS); cardN=n;
+    if(!$("#modalHost .card.el")){
+      const m=openModal(`<button class="arrow l" data-nav="-1" aria-label="上一個">◀</button><div class="card el" role="dialog" aria-modal="true"></div><button class="arrow r" data-nav="1" aria-label="下一個">▶</button>`,
+        {onClose:()=>{cardN=null; if(canSpeak) speechSynthesis.cancel();}, onKey});
+      m.addEventListener("click",onCardClick);
+      m.addEventListener("input",onTry);
+      let sx=0, sy=0;
+      m.addEventListener("touchstart",e=>{sx=e.touches[0].clientX; sy=e.touches[0].clientY;},{passive:true});
+      m.addEventListener("touchend",e=>{
+        if(e.target.closest("input")) return;
+        const dx=e.changedTouches[0].clientX-sx, dy=e.changedTouches[0].clientY-sy;
+        if(Math.abs(dx)>70&&Math.abs(dx)>Math.abs(dy)*1.8) go(dx<0?1:-1);
+      },{passive:true});
+    }
+    fillCard(0);
+  }
+  function onKey(e){
+    if(e.target.tagName==="INPUT"){
+      if(e.key==="Escape"){e.target.blur(); return true;}
+      return e.key!=="Escape";
+    }
+    if(e.key==="ArrowLeft"){e.preventDefault(); go(-1); return true;}
+    if(e.key==="ArrowRight"){e.preventDefault(); go(1); return true;}
+    return false;
+  }
+  function go(d){
+    if(cardN==null) return;
+    const i=cardList.findIndex(x=>x.n===cardN), len=cardList.length;
+    cardN=cardList[((i<0?0:i)+d+len)%len].n; sfx.flip(); fillCard(d);
+  }
+  function fillCard(dir){
+    const e=BY_N[cardN], r=ST.el[e.n]||{w:0,r:0,k:0}, idx=cardList.findIndex(x=>x.n===cardN);
+    const card=$("#modalHost .card.el"); tryDone=false;
+    card.className="card el"+(dir<0?" slide-l":dir>0?" slide-r":"");
+    card.setAttribute("aria-label",e.zh+" "+e.en);
+    card.innerHTML=`
+      <button class="x" data-close aria-label="關閉">✕</button>
+      <div class="chead c-${e.c}">
+        <div class="bigtile"><span class="n">${e.n}</span><span class="s">${e.s}</span><span class="emo" aria-hidden="true">${e.e}</span></div>
+        <div class="ctitle">
+          <h2 class="hn">${e.en}${e.alt?` <small style="font-size:15px;color:var(--muted);font-weight:600">／${e.alt.join("／")}</small>`:""}</h2>
+          <div class="zhn">${e.zh}</div>
+          <div class="tags"><span class="tag">原子序 ${e.n}</span><span class="tag">符號 ${e.s}</span><span class="tag ${e.c}">${CLS[e.c]} ${e.c}</span><span class="tag">${STATE[e.st]} ${ST_SYM[e.st]}</span></div>
+        </div>
+      </div>
+      <div class="cbody">
+        <div class="say">
+          ${canSpeak?`<button class="btn ghost sm" data-say="name">🔊 讀英文名</button><button class="btn ghost sm" data-say="spell">🔤 逐個字母讀</button>`:""}
+          <button class="btn sm" data-try>✍️ 拼寫挑戰</button>
+        </div>
+        <div class="sec hidden" id="trySec"><h3>✍️ 拼寫挑戰：英文名已遮住，憑記憶打出來！</h3>
+          <div class="try"><input id="tryIn" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="在這裏輸入英文全稱" enterkeyhint="done"><button class="btn ghost sm" data-giveup>看答案</button></div>
+          <div class="live" id="tryLive" aria-live="polite"></div></div>
+        <div class="sec hn"><h3>📘 中文介紹</h3><p>${e.zi}</p></div>
+        <div class="sec en hn"><h3>🌏 English</h3><p>${e.ei}</p></div>
+        ${e.lat?`<div class="sec lat hn"><h3>🏛️ 為甚麼符號是 ${e.s}，不是 ${e.en.slice(0,2)}？</h3><div class="w">${latinWord(e)}</div><p>${e.lat.zh}</p><p style="margin-top:6px;font-size:14px;color:var(--muted)">${e.lat.en}</p></div>`:""}
+        ${e.sp?`<div class="sec spell hn"><h3>⚠️ 易錯拼寫</h3><div class="spellword">${hl(e.sp.hl)}</div><p>${e.sp.zh}</p></div>`:""}
+        ${e.mx?`<div class="sec mix hn"><h3>🔀 易混淆</h3><p>${e.mx}</p></div>`:""}
+        <div class="myrec">${r.r+r.w?`我的測驗紀錄：答對 ${r.r} 次 · 答錯 ${r.w} 次 · 掌握 ${starStr(e.n)}`:"還未在測驗區考過這個元素"}</div>
+      </div>
+      <div class="cnav"><button class="btn ghost sm" data-nav="-1">◀ 上一個</button><span class="pos">${idx+1} / ${cardList.length}</span><button class="btn ghost sm" data-nav="1">下一個 ▶</button></div>`;
+    card.scrollTop=0;
+    if(!ST.seen.includes(e.n)){ST.seen.push(e.n); save(); checkAch();}
+  }
+  function onCardClick(ev){
+    const e=BY_N[cardN]; if(!e) return;
+    const nav=ev.target.closest("[data-nav]"); if(nav){go(+nav.dataset.nav); return;}
+    const say=ev.target.closest("[data-say]");
+    if(say){ say.dataset.say==="name"?speak(e.en,.85):speak(e.en.toUpperCase().split("").join(", "),.7); return; }
+    const card=$("#modalHost .card.el");
+    if(ev.target.closest("[data-try]")){
+      card.classList.add("hidename"); $("#trySec").classList.remove("hidden");
+      const inp=$("#tryIn"); inp.value=""; inp.disabled=false; $("#tryLive").innerHTML=""; tryDone=false; inp.focus();
+      return;
+    }
+    if(ev.target.closest("[data-giveup]")){
+      card.classList.remove("hidename"); $("#trySec").classList.add("hidden"); return;
+    }
+  }
+  function onTry(ev){
+    if(ev.target.id!=="tryIn"||tryDone) return;
+    const e=BY_N[cardN], v=ev.target.value.trim().toLowerCase();
+    const opts=[e.en,...(e.alt||[])].map(s=>s.toLowerCase());
+    const pre=t=>{let i=0; while(i<v.length&&i<t.length&&v[i]===t[i]) i++; return i;};
+    const t=opts.reduce((a,b)=>pre(b)>pre(a)?b:a);
+    let html=""; for(let i=0;i<v.length;i++) html+=`<span class="${v[i]===t[i]?"ok":"no"}">${esc(v[i])}</span>`;
+    if(v.length<t.length) html+=`<span class="rest">${"_".repeat(t.length-v.length)}</span>`;
+    if(opts.includes(v)){
+      tryDone=true; ev.target.disabled=true;
+      $("#tryLive").innerHTML=`<span class="ok">✔ 完全正確！${esc(ev.target.value.trim())}</span>`;
+      $("#modalHost .card.el").classList.remove("hidename");
+      sfx.ok(); const b=ev.target.getBoundingClientRect(); confetti(60,b.left+b.width/2,b.top,.7);
+      if(!ST.spelled.includes(e.n)){ST.spelled.push(e.n); save(); addXP(5,b.left+b.width/2,b.top); checkAch();}
+      return;
+    }
+    $("#tryLive").innerHTML=html;
+  }
+
+  function init(){
+    $("#q").addEventListener("input",e=>{F.q=e.target.value; render();});
+    $("#fCls").addEventListener("click",e=>{const b=e.target.closest("button"); if(!b) return; F.c=b.dataset.c; $$("#fCls button").forEach(x=>x.classList.toggle("on",x===b)); render();});
+    $("#fSt").addEventListener("click",e=>{const b=e.target.closest("button"); if(!b) return; F.s=b.dataset.s; $$("#fSt button").forEach(x=>x.classList.toggle("on",x===b)); render();});
+    $("#layout").addEventListener("click",e=>{const b=e.target.closest("button"); if(!b) return; F.layout=b.dataset.l; $$("#layout button").forEach(x=>x.classList.toggle("on",x===b)); render();});
+    $("#coverBtn").addEventListener("click",()=>setCover(!F.cover));
+    $("#spinBtn").addEventListener("click",spin);
+    $("#gridHost").addEventListener("click",ev=>{
+      const t=ev.target.closest(".tile"); if(!t) return;
+      if(F.cover&&!t.classList.contains("open")){t.classList.add("open"); sfx.flip(); return;}
+      openCard(+t.dataset.n);
+    });
+  }
+  return {init,render,openCard,onShow:render};
+})();
+
+/* ===== 測驗區 ===== */
+const Quiz=(()=>{
+  const root=()=>$("#quiz");
+  const SEQ=ELEMENTS.filter(e=>e.n<=20);
+  const coarse=window.matchMedia&&matchMedia("(pointer:coarse)").matches;
+  let view="home", Q=null, R=null, tmr=null;
+  const cfg={scope:"all",count:10};
+  try{Object.assign(cfg,JSON.parse(localStorage.getItem("ptq-cfg")||"{}"));}catch(e){}
+  const saveCfg=()=>{try{localStorage.setItem("ptq-cfg",JSON.stringify(cfg));}catch(e){}};
+  const fmt=ms=>{const s=Math.floor(ms/1000); return String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0");};
+  const weight=n=>1+2*(ST.el[n]?ST.el[n].w:0);   // 答錯越多，權重越高
+  const wrongEls=()=>ELEMENTS.filter(e=>ST.el[e.n]&&ST.el[e.n].w>0).sort((a,b)=>ST.el[b.n].w-ST.el[a.n].w);
+  function scopeList(scope){
+    if(scope==="20") return SEQ;
+    if(scope==="wrong") return wrongEls();
+    return ELEMENTS;
+  }
+
+  /* ---------- 判分 ---------- */
+  function align(a,b,ci){   // 對齊兩串字（編輯距離），用來把拼錯的字母標紅
+    const A=ci?a.toLowerCase():a, B=ci?b.toLowerCase():b, m=A.length, n=B.length;
+    const d=Array.from({length:m+1},(_,i)=>{const r=new Array(n+1).fill(0); r[0]=i; return r;});
+    for(let j=0;j<=n;j++) d[0][j]=j;
+    for(let i=1;i<=m;i++) for(let j=1;j<=n;j++)
+      d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(A[i-1]===B[j-1]?0:1));
+    const ops=[]; let i=m, j=n;
+    while(i>0||j>0){
+      if(i>0&&j>0&&d[i][j]===d[i-1][j-1]+(A[i-1]===B[j-1]?0:1)){ops.push({t:A[i-1]===B[j-1]?"eq":"sub",a:a[i-1],b:b[j-1]}); i--; j--;}
+      else if(i>0&&d[i][j]===d[i-1][j]+1){ops.push({t:"ins",a:a[i-1]}); i--;}
+      else {ops.push({t:"del",b:b[j-1]}); j--;}
+    }
+    return ops.reverse();
+  }
+  const dist=(a,b)=>align(a,b,true).filter(o=>o.t!=="eq").length;
+  function judgeSym(raw,el){
+    const a=raw.trim();
+    if(a===el.s) return {ok:true};
+    if(a&&a.toLowerCase()===el.s.toLowerCase()){
+      if(el.s.length===1) return {ok:false,caseOnly:true,msg:`大小寫錯了！這個符號只有一個字母，要用<b>大寫</b>：應寫成 <b>${el.s}</b>`};
+      const t=[]; if(a[0]!==el.s[0]) t.push("第一個字母要<b>大寫</b>"); if(a[1]!==el.s[1]) t.push("第二個字母要<b>小寫</b>");
+      return {ok:false,caseOnly:true,msg:`大小寫錯了！${t.join("，")}：應寫成 <b>${el.s}</b>`};
+    }
+    return {ok:false};
+  }
+  function judgeName(raw,el){
+    const a=raw.trim().replace(/\s+/g," ").toLowerCase(), opts=[el.en,...(el.alt||[])];
+    if(opts.some(o=>o.toLowerCase()===a)) return {ok:true};
+    let best=opts[0], bd=Infinity;
+    for(const o of opts){const d=dist(a,o); if(d<bd){bd=d; best=o;}}
+    return {ok:false,target:best};
+  }
+  function userHTML(raw,target,ci){
+    if(!raw) return '<span class="empty-ans">（未作答）</span>';
+    return align(raw,target,ci).map(o=>o.t==="eq"?esc(o.a):o.t==="sub"?`<span class="w">${esc(o.a)}</span>`:
+      o.t==="ins"?`<span class="xt">${esc(o.a)}</span>`:'<span class="m">_</span>').join("");
+  }
+  function rightHTML(raw,target,ci){
+    if(!raw) return esc(target);
+    return align(raw,target,ci).map(o=>o.t==="eq"?esc(o.b):o.t==="ins"?"":`<span class="h">${esc(o.b)}</span>`).join("");
+  }
+  function answerLine(ok,raw,target,ci){
+    return ok?`<span class="ans right">${esc(raw)}</span> <span class="okmark">✔</span>`
+      :`<span class="ans">${userHTML(raw,target,ci)}</span> → <span class="ans right">${rightHTML(raw,target,ci)}</span>`;
+  }
+
+  /* ---------- 選單 ---------- */
+  function home(){
+    view="home"; stopTimer();
+    const wrong=wrongEls();
+    if(cfg.scope==="wrong"&&!wrong.length) cfg.scope="all";
+    const bs=ST.best.seq, br=ST.best.rand, pool=scopeList(cfg.scope);
+    const tot=pool.reduce((s,e)=>s+weight(e.n),0);
+    const top=pool.filter(e=>weight(e.n)>1).sort((a,b)=>weight(b.n)-weight(a.n)).slice(0,4);
+    const today=ST.day.date===dstr(new Date())?ST.day.today:0;
+    root().innerHTML=`
+    <div class="qhome">
+      <div class="mode">
+        <div class="big">📜</div><h3>順序默寫</h3>
+        <p>由 <b>1 號</b>開始，依次寫出每個元素的<b>符號</b>和<b>英文全稱</b>，一直到 <b>20 號</b>。完成後顯示總分、用時和錯題清單。</p>
+        <button class="btn" data-go="seq">開始默寫 ▶</button>
+        <div class="rec">${bs?`🏆 最佳紀錄：${bs.score}/${bs.max} 分 · ${fmt(bs.time)}`:"還未有紀錄，快來挑戰！"}</div>
+      </div>
+      <div class="mode">
+        <div class="big">🎲</div><h3>隨機抽考</h3>
+        <p>隨機抽出原子序讓你作答。<b>答錯次數越多的元素，越常被抽中</b>，專攻你的弱點！</p>
+        <div class="opts">
+          <span class="lab">範圍</span>
+          <div class="seg" id="optScope"><button data-v="all">全部 35 個</button><button data-v="20">1–20 號</button><button data-v="wrong" ${wrong.length?"":"disabled"}>只考錯題</button></div>
+          <span class="lab">題數</span>
+          <div class="seg" id="optCount"><button data-v="10">10 題</button><button data-v="20">20 題</button><button data-v="0">無限挑戰</button></div>
+        </div>
+        <button class="btn" data-go="rand">開始抽考 ▶</button>
+        <div class="rec">${top.length?`🎯 現在最常被抽中：${top.map(e=>`<b>${e.s}</b> ${Math.round(weight(e.n)/tot*100)}%`).join("、")}`:"🎯 現在每個元素被抽中的機會相同"}${br?`<br>🏆 最佳正確率：${br.pct}%（${br.n} 題）`:""}</div>
+      </div>
+    </div>
+    <div class="box">
+      <h3>📒 我的錯題本 <span class="sp"></span>
+        <button class="btn sm" data-go="wrong" ${wrong.length?"":"disabled"}>🎯 只練錯題</button>
+        <button class="btn danger sm" data-clear>🗑️ 清除紀錄</button></h3>
+      ${wrong.length?`<p class="hint" style="margin:0 0 10px">×數字＝累積答錯次數。錯得越多，隨機抽考時越常出現。點一下可以溫習那個元素。</p>
+      <div class="wchips">${wrong.map(e=>`<button class="wchip" data-n="${e.n}"><b>${e.s}</b>${e.en} ${e.zh}<span class="c">×${ST.el[e.n].w}</span></button>`).join("")}</div>`
+      :'<p class="hint" style="margin:0">暫時沒有錯題 🎉 去考一考，看看自己記得多少！</p>'}
+    </div>
+    <div class="box">
+      <h3>📈 學習進度 <span class="sp"></span><button class="btn ghost sm" data-ach>🏅 查看成就</button></h3>
+      <p class="hint" style="margin:0">⭐ 已掌握 ${masteredCount()}/35（連續答對 3 次＝掌握）　·　🔥 連續 ${currentStreak()} 日　·　今日已答 ${today} 題　·　累積 ${ST.total} 題</p>
+    </div>`;
+    $$("#optScope button").forEach(b=>b.classList.toggle("on",b.dataset.v===cfg.scope));
+    $$("#optCount button").forEach(b=>b.classList.toggle("on",+b.dataset.v===cfg.count));
+  }
+
+  /* ---------- 作答 ---------- */
+  function start(mode,opts={}){
+    const o=Object.assign({scope:cfg.scope,count:cfg.count},opts);
+    let pool=mode==="seq"?SEQ:(o.list?o.list.map(n=>BY_N[n]):scopeList(o.scope));
+    if(!pool.length) pool=ELEMENTS;
+    Q={mode,opts:o,pool,total:mode==="seq"?SEQ.length:(o.count||Infinity),i:0,cur:null,last:null,answers:[],
+       start:Date.now(),combo:0,maxCombo:0,score:0,max:0,locked:false,hinted:false,emptyWarn:false};
+    view="play"; renderPlay(); nextQ(); startTimer();
+    window.scrollTo({top:0});
+  }
+  function renderPlay(){
+    const fin=Number.isFinite(Q.total);
+    root().innerHTML=`
+    <div class="qtop">
+      <span class="pill">${Q.mode==="seq"?"📜 順序默寫":"🎲 隨機抽考"}</span>
+      <span class="pill" id="qProg"></span><span class="pill" id="qTime">⏱ 00:00</span><span class="pill" id="qScore">得分 0</span>
+      <span class="sp"></span>
+      <button class="btn ghost sm" data-quit>${fin?"✕ 結束":"🏁 結束並看結果"}</button>
+    </div>
+    ${fin?`<div class="track" id="track">${"<i></i>".repeat(Q.total)}</div>`:""}
+    <div class="qcard" id="qcard">
+      <div class="combo hidden" id="combo"></div>
+      <div class="mystery">
+        <div class="mtile" id="mtile"><span class="face" id="face">🤔</span><span class="n" id="qNum">?</span><span class="l">原子序</span></div>
+        <div class="qprompt">這是哪個元素？<br><b>寫出符號和英文全稱</b><div class="zhhint" id="zhHint"></div></div>
+      </div>
+      <div class="fields">
+        <div class="field"><label for="inS">符號 Symbol</label><input id="inS" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="next" maxlength="4" placeholder="Xx"></div>
+        <div class="field"><label for="inN">英文全稱 Full name</label><input id="inN" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="send" maxlength="24" placeholder="English name"></div>
+      </div>
+      <div class="qact">
+        <button class="btn ghost sm" data-hint id="hintBtn">💡 提示（中文名）</button>
+        <span class="sp"></span>
+        <span class="kbd">符號 <kbd>Enter</kbd> → 全稱　全稱 <kbd>Enter</kbd> → 提交</span>
+        <button class="btn" data-submit id="subBtn">提交 ⏎</button>
+      </div>
+      <div id="fb" aria-live="polite"></div>
+    </div>`;
+    const s=$("#inS"), n=$("#inN");
+    s.addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault(); if(Q&&Q.locked) nextQ(); else n.focus();}});
+    n.addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault(); submit();}});
+  }
+  function pick(pool,last){
+    const cand=pool.length>1?pool.filter(e=>e.n!==last):pool;
+    let r=Math.random()*cand.reduce((s,e)=>s+weight(e.n),0);
+    for(const e of cand){r-=weight(e.n); if(r<0) return e;}
+    return cand[cand.length-1];
+  }
+  function nextQ(){
+    if(!Q) return;
+    if(Q.i>=Q.total){finish(); return;}
+    Q.locked=false; Q.hinted=false; Q.emptyWarn=false;
+    const el=Q.mode==="seq"?SEQ[Q.i]:pick(Q.pool,Q.last);
+    Q.cur=el; Q.last=el.n;
+    const s=$("#inS"), n=$("#inN");
+    s.value=""; n.value=""; s.className=""; n.className="";
+    $("#fb").innerHTML=""; $("#zhHint").textContent=""; $("#hintBtn").disabled=false; $("#subBtn").textContent="提交 ⏎";
+    $("#qNum").textContent=el.n; $("#face").textContent="🤔";
+    const mt=$("#mtile"); mt.classList.remove("new"); void mt.offsetWidth; mt.classList.add("new");
+    updateTop(); s.focus();
+  }
+  function updateTop(){
+    const fin=Number.isFinite(Q.total), k=Q.locked?Q.i:Q.i+1;
+    $("#qProg").textContent=fin?`第 ${Math.min(k,Q.total)} / ${Q.total} 題`:`第 ${k} 題`;
+    $("#qScore").textContent=`得分 ${Q.score}${Q.max?" / "+Q.max:""}`;
+    const tr=$("#track");
+    if(tr) [...tr.children].forEach((x,j)=>{const a=Q.answers[j]; x.className=a?(a.pts===2?"ok":a.pts===1?"half":"no"):(j===Q.i&&!Q.locked?"cur":"");});
+  }
+  function showCombo(){
+    const c=$("#combo"); if(!c) return;
+    if(Q.combo>=2){c.textContent=`🔥 ${Q.combo} 連擊！`; c.classList.remove("hidden","bump"); void c.offsetWidth; c.classList.add("bump");}
+    else c.classList.add("hidden");
+  }
+  function hint(){
+    if(!Q||Q.locked||Q.hinted) return;
+    Q.hinted=true; $("#zhHint").textContent="💡 中文名："+Q.cur.zh; $("#hintBtn").disabled=true; sfx.pop();
+    if(!coarse) $("#inS").focus();
+  }
+  function submit(){
+    if(view!=="play"||!Q) return;
+    if(Q.locked){nextQ(); return;}
+    const el=Q.cur, sIn=$("#inS").value, nIn=$("#inN").value;
+    if(!sIn.trim()&&!nIn.trim()&&!Q.emptyWarn){
+      Q.emptyWarn=true;
+      $("#fb").innerHTML='<div class="tip">還未作答喔！想不起的話可以按「💡 提示」；再按一次「提交」就會直接看答案（當答錯計算）。</div>';
+      $("#inS").focus(); return;
+    }
+    const rs=judgeSym(sIn,el), rn=judgeName(nIn,el), pts=(rs.ok?1:0)+(rn.ok?1:0), full=pts===2;
+    Q.score+=pts; Q.max+=2; Q.i++;
+    Q.answers.push({n:el.n,s:sIn.trim(),nm:nIn.trim().replace(/\s+/g," "),rs,rn,pts});
+    const r=rec(el.n); if(full){r.r++; r.k++;} else {r.w++; r.k=0;}
+    ST.total++; touchDay();
+    const b=$("#mtile").getBoundingClientRect(), fx=b.left+b.width/2, fy=b.top;
+    if(full){
+      Q.combo++; Q.maxCombo=Math.max(Q.maxCombo,Q.combo); ST.maxCombo=Math.max(ST.maxCombo,Q.combo);
+      save(); sfx.ok();
+      floaty(`✔ ${el.s} ${el.en}`,fx,fy-6,"var(--good)");
+      addXP((Q.hinted?5:10)+Math.min(Q.combo-1,10),fx,fy+34);
+      if(Q.combo%5===0){sfx.combo(Q.combo); confetti(70,fx,fy,.8);}
+      checkAch();
+      nextQ(); if(!Q) return;
+      showCombo();
+      $("#face").textContent=Q.combo>=5?"😎":"😄";
+      setTimeout(()=>{if(Q&&!Q.locked&&$("#face")) $("#face").textContent="🤔";},900);
+    }else{
+      Q.combo=0; showCombo(); save(); sfx.bad();
+      if(pts===1) addXP(3,fx,fy+34);
+      Q.locked=true;
+      $("#face").textContent=pts===1?"😅":"😵";
+      $("#inS").className=rs.ok?"ok":"no"; $("#inN").className=rn.ok?"ok":"no";
+      const qc=$("#qcard"); qc.classList.remove("shake"); void qc.offsetWidth; qc.classList.add("shake");
+      $("#fb").innerHTML=feedbackHTML(el,rs,rn,sIn.trim(),nIn.trim().replace(/\s+/g," "),pts);
+      $("#subBtn").textContent=Q.i>=Q.total?"看結果 ⏎":"下一題 ⏎";
+      $("#hintBtn").disabled=true;
+      checkAch(); updateTop();
+      if(coarse){document.activeElement&&document.activeElement.blur(); $("#fb").scrollIntoView({behavior:"smooth",block:"center"});}
+      else $("#inN").focus();
+    }
+  }
+  function feedbackHTML(el,rs,rn,s,n,pts){
+    const tips=[];
+    if(rs.caseOnly) tips.push("🔠 "+rs.msg);
+    if(!rs.ok&&!rs.caseOnly&&el.lat) tips.push(`🏛️ 記住：<b>${el.s}</b> 來自拉丁文 <b>${el.lat.w}</b>，所以符號和英文名對不上。`);
+    if(!rn.ok&&el.sp) tips.push("✏️ "+esc(el.sp.zh));
+    if(!rn.ok&&el.alt) tips.push(`ℹ️ ${el.en} 和 ${el.alt.join("、")} 兩種拼法都算對。`);
+    if(!rs.ok&&!rs.caseOnly&&el.mx) tips.push("🔀 "+esc(el.mx));
+    return `<div class="fb"><h4>${pts===1?"差一點！只答對一半":"答錯了"} — ${el.n} 號是「${el.zh}」</h4>
+      <div class="row"><span class="k">符號</span><span>${answerLine(rs.ok,s,el.s,false)}</span></div>
+      <div class="row"><span class="k">全稱</span><span>${answerLine(rn.ok,n,rn.target||el.en,true)}</span></div>
+      ${tips.map(t=>`<div class="tip">${t}</div>`).join("")}
+      <div class="hint" style="margin-top:8px">紅色＝你寫錯的字母，<b>_</b>＝漏寫的字母。按 <b>Enter</b> 或「下一題」繼續。</div></div>`;
+  }
+  function startTimer(){stopTimer(); tmr=setInterval(()=>{const t=$("#qTime"); if(t&&Q) t.textContent="⏱ "+fmt(Date.now()-Q.start);},500);}
+  function stopTimer(){if(tmr) clearInterval(tmr); tmr=null;}
+  async function quit(){
+    if(!Q){home(); return;}
+    if(Number.isFinite(Q.total)&&Q.i<Q.total){
+      const ok=await ask("要提早結束嗎？",Q.i?`已作答 ${Q.i} 題，會用目前的答案計分。`:"還未作答，會返回選單。","結束");
+      if(!ok){if(Q&&!coarse) $("#inS").focus(); return;}
+    }
+    if(!Q.answers.length){Q=null; home(); return;}
+    finish(true);
+  }
+
+  /* ---------- 結果 ---------- */
+  function finish(early=false){
+    stopTimer();
+    const time=Date.now()-Q.start, pct=Q.max?Math.round(Q.score/Q.max*100):0;
+    let newRec=false; ST.quizzes++;
+    if(Q.mode==="seq"&&!early){
+      const b=ST.best.seq;
+      if(!b||Q.score>b.score||(Q.score===b.score&&time<b.time)){ST.best.seq={score:Q.score,max:Q.max,time}; newRec=true;}
+      if(Q.score===Q.max) unlock("perfect");
+      if(time<=180000&&pct>=90) unlock("fast");
+    }
+    if(Q.mode==="rand"&&Q.answers.length>=10){
+      const b=ST.best.rand;
+      if(!b||pct>b.pct||(pct===b.pct&&Q.answers.length>b.n)){ST.best.rand={pct,n:Q.answers.length}; newRec=true;}
+    }
+    save(); unlock("first"); checkAch();
+    const wrongs=Q.answers.filter(a=>a.pts<2);
+    R={mode:Q.mode,opts:Q.opts,score:Q.score,max:Q.max,time,pct,newRec,answers:Q.answers,maxCombo:Q.maxCombo,wrongNs:[...new Set(wrongs.map(a=>a.n))]};
+    Q=null; view="result"; renderResult();
+  }
+  function renderResult(){
+    const r=R, p=r.pct, wrongs=r.answers.filter(a=>a.pts<2);
+    const [medal,title]=p===100?["🏆","完美！你是元素大師！"]:p>=90?["🥇","超級厲害！"]:p>=75?["🥈","做得好！"]:p>=50?["🥉","不錯，繼續加油！"]:["💪","多溫習幾次，一定得！"];
+    root().innerHTML=`<div class="result">
+      <div class="medal">${medal}</div><h2>${title}</h2>
+      <div class="score" id="scoreNum">0 / ${r.max}</div><div class="hint">總分（每題符號 1 分＋全稱 1 分）</div>
+      ${r.newRec?'<div style="margin-top:8px"><span class="newrec">🎉 新紀錄！</span></div>':""}
+      <div class="rstats"><span class="pill">⏱ 用時 ${fmt(r.time)}</span><span class="pill">✅ 正確率 ${p}%</span><span class="pill">🔥 最高連擊 ${r.maxCombo}</span><span class="pill">📝 共 ${r.answers.length} 題</span></div>
+      <div class="box wlist">
+        <h3>❌ 錯題清單（${wrongs.length} 題）</h3>
+        ${wrongs.length?'<p class="hint" style="margin:-4px 0 10px">紅色＝寫錯的字母，_＝漏寫的字母，綠色底線＝正確答案中你寫錯的位置。點一下可以溫習。</p>'+wrongs.map(a=>{const e=BY_N[a.n]; return `
+          <div class="witem" data-n="${e.n}" title="點擊溫習">
+            <div class="el">${e.s}<small>${e.n} ${e.zh}</small></div>
+            <div class="lines">
+              <div class="ln"><span class="k">符號</span>${answerLine(a.rs.ok,a.s,e.s,false)}${a.rs.caseOnly?' <span class="hint">（大小寫錯）</span>':""}</div>
+              <div class="ln"><span class="k">全稱</span>${answerLine(a.rn.ok,a.nm,a.rn.target||e.en,true)}</div>
+            </div></div>`;}).join(""):'<p class="hint" style="margin:0">一題錯題都沒有！🎉</p>'}
+      </div>
+      <div class="racts">
+        <button class="btn" data-again>🔁 再來一次</button>
+        ${wrongs.length?'<button class="btn ghost" data-retrywrong>🎯 練習這次的錯題</button>':""}
+        <button class="btn ghost" data-home>🏠 返回選單</button>
+      </div></div>`;
+    const el=$("#scoreNum"), t0=performance.now();
+    const step=now=>{const k=Math.min(1,(now-t0)/900); el.textContent=Math.round(r.score*(1-Math.pow(1-k,3)))+" / "+r.max; if(k<1) requestAnimationFrame(step);};
+    requestAnimationFrame(step);
+    if(p>=80){sfx.win(); confetti(p===100?220:120);} else sfx.pop();
+    window.scrollTo({top:0,behavior:"smooth"});
+  }
+  async function clearAll(){
+    const ok=await ask("清除所有紀錄？","錯題紀錄、掌握星星、最佳成績、經驗值和成就都會被刪除，不能復原。","清除",true);
+    if(!ok) return;
+    ST=fresh(); save(); updateHeader(); home(); toast("🧹","已清除所有紀錄","可以重新開始挑戰了！");
+  }
+
+  function onClick(ev){
+    const t=ev.target, has=s=>t.closest(s);
+    const go=has("[data-go]");
+    if(go){const g=go.dataset.go; if(g==="seq") start("seq"); else if(g==="rand") start("rand"); else start("rand",{scope:"wrong"}); return;}
+    const sc=has("#optScope button"); if(sc){cfg.scope=sc.dataset.v; saveCfg(); home(); return;}
+    const ct=has("#optCount button"); if(ct){cfg.count=+ct.dataset.v; saveCfg(); home(); return;}
+    if(has("[data-clear]")){clearAll(); return;}
+    if(has("[data-ach]")){showAch(); return;}
+    if(has("[data-submit]")){submit(); return;}
+    if(has("[data-hint]")){hint(); return;}
+    if(has("[data-quit]")){quit(); return;}
+    if(has("[data-again]")){start(R.mode,R.opts); return;}
+    if(has("[data-retrywrong]")){start("rand",{list:R.wrongNs,count:Math.min(20,Math.max(6,R.wrongNs.length*2))}); return;}
+    if(has("[data-home]")){home(); return;}
+    const w=has("[data-n]");
+    if(w){
+      const list=view==="result"?R.wrongNs.map(n=>BY_N[n]):wrongEls();
+      Review.openCard(+w.dataset.n,list.length?list:undefined);
+    }
+  }
+  function init(){
+    root().addEventListener("click",onClick);
+    document.addEventListener("keydown",e=>{
+      if(view!=="play"||!Q||!Q.locked||e.key!=="Enter"||$("#modalHost").firstElementChild||root().classList.contains("hidden")) return;
+      if(e.target.tagName==="INPUT"||e.target.tagName==="BUTTON") return;
+      e.preventDefault(); nextQ();
+    });
+    home();
+  }
+  function onShow(){
+    if(view==="home") home();
+    else if(view==="play"&&Q&&!coarse) $(Q.locked?"#inN":"#inS").focus();
+  }
+  return {init,onShow};
+})();
+
+/* ===== 啟動 ===== */
+function setTab(t){
+  const q=t==="quiz";
+  $("#tabbar").classList.toggle("q",q);
+  $("#tabR").classList.toggle("on",!q); $("#tabQ").classList.toggle("on",q);
+  $("#tabR").setAttribute("aria-selected",String(!q)); $("#tabQ").setAttribute("aria-selected",String(q));
+  $("#review").classList.toggle("hidden",q); $("#quiz").classList.toggle("hidden",!q);
+  try{localStorage.setItem("ptq-tab",t);}catch(e){}
+  window.scrollTo({top:0});
+  if(q) Quiz.onShow(); else Review.onShow();
+}
+load(); sizeFX(); addEventListener("resize",sizeFX);
+Review.init(); Quiz.init();
+$("#tabR").addEventListener("click",()=>setTab("review"));
+$("#tabQ").addEventListener("click",()=>setTab("quiz"));
+$("#achBtn").addEventListener("click",showAch);
+$("#sndBtn").addEventListener("click",()=>{SOUND=!SOUND; try{localStorage.setItem("ptq-sound",SOUND?"1":"0");}catch(e){} updateHeader(); if(SOUND) sfx.pop();});
+document.addEventListener("pointerdown",()=>ac(),{once:true});
+updateHeader();
+let startTab="review"; try{if(localStorage.getItem("ptq-tab")==="quiz") startTab="quiz";}catch(e){}
+setTab(startTab);
+</script>
+</body>
+</html>
